@@ -1,0 +1,49 @@
+{
+  "courses": {
+    "HIST 101-1": {
+      "canvas_id": 2490206,
+      "base_course_number": 101,
+      "course_type": "WorldHistory",
+      "embeddings_path": "~/dev/kb/text/WorldHistory",
+      "description": "World History Section 1",
+      "enabled": true
+    },
+    "HIST 101-2": {
+      "canvas_id": 2492649,
+      "base_course_number": 101,
+      "course_type": "WorldHistory",
+      "embeddings_path": "~/dev/kb/text/WorldHistory",
+      "description": "World History Section 2",
+      "enabled": true
+    },
+    "HIST 110": {
+      "canvas_id": 2492650,
+      "base_course_number": 110,
+      "course_type": "USHistory",
+      "embeddings_path": "~/dev/kb/text/USHistory",
+      "description": "US History II",
+      "enabled": true
+    }
+  },
+  "knowledge_bases": {
+    "WorldHistory": {
+      "path": "~/dev/kb/text/WorldHistory/",
+      "embeddings_file": "embeddings_WorldHistory.pkl",
+      "description": "World History course materials"
+    },
+    "USHistory": {
+      "path": "~/dev/kb/text/USHistory/",
+      "embeddings_file": "embeddings_USHistory.pkl",
+      "description": "US History course materials"
+    }
+  },
+  "settings": {
+    "default_provider": "anthropic",
+    "default_model": "claude-sonnet-4-20250514",
+    "batch_size": 10,
+    "max_retries": 3,
+    "embeddings_cache_dir": "data/embeddings",
+    "exports_dir": "data/exports",
+    "logs_dir": "data/logs"
+  }
+}
