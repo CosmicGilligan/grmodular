@@ -1,0 +1,313 @@
+import sys
+from pathlib import Path
+
+# Add project root to Python path - CRITICAL FOR IMPORTS
+project_root = Path(__file__).parent.parent
+sys.path.insert(0, str(project_root))
+
+import streamlit as st
+import pandas as pd
+from shared.canvas_submissions import download_submissions_flat, load_submissions_from_folder
+from assignment_handlers.book_review_handler import BookReviewHandler
+from shared.exam_export import export_book_reviews_to_excel
+from shared.config_loader import get_config
+from shared.credentials import load_canvas_credentials
+
+st.set_page_config(page_title="Book Review Grader", page_icon="📚", layout="wide")
+
+st.title("📚 Book Review Grading: 1984")
+
+# Initialize Session State
+if "review_grades" not in st.session_state:
+    st.session_state.review_grades = []
+
+if "config" not in st.session_state:
+    try:
+        st.session_state.config = get_config()
+    except Exception as e:
+        st.error(f"Error loading configuration: {e}")
+        st.info("Please check config/courses.json")
+        st.stop()
+
+# --- SIDEBAR CONFIG ---
+with st.sidebar:
+    st.header("Configuration")
+    
+    # Load courses from configuration
+    try:
+        config = st.session_state.config
+        COURSES = config.get_courses_dict()
+        
+        # Course selector
+        course_name = st.selectbox(
+            "Select course",
+            options=list(COURSES.keys()),
+            key="book_review_course_selector"
+        )
+        
+        if course_name:
+            selected_course_id, course_type = COURSES[course_name]
+            st.session_state.selected_course_id = selected_course_id
+            st.session_state.selected_course_name = course_name
+            st.session_state.selected_course_type = course_type
+            
+            # Show course info
+            st.info(f"Course ID: {selected_course_id}")
+        else:
+            st.warning("Please select a course")
+            st.stop()
+            
+    except Exception as e:
+        st.error(f"Error loading courses: {e}")
+        st.stop()
+    
+    # Assignment ID input
+    assignment_id = st.text_input("Canvas Assignment ID")
+    
+    st.divider()
+    model_choice = st.selectbox("LLM Model", ["claude-sonnet-4-20250514", "gpt-4o"])
+    
+    # Reusing your leniency feature
+    score_multiplier = st.slider("Score Multiplier (Leniency)", 1.0, 1.3, 1.05, 0.05)
+
+# --- MAIN WORKFLOW ---
+
+# Step 1: Download
+st.header("1. Import Submissions")
+col1, col2 = st.columns(2)
+
+# Get credentials
+try:
+    canvas_url, canvas_token = load_canvas_credentials()
+except Exception as e:
+    st.error(f"Error loading credentials: {e}")
+    st.info("Please check your credentials file")
+    st.stop()
+
+with col1:
+    if st.button("Download from Canvas"):
+        if not assignment_id:
+            st.error("Please enter an Assignment ID")
+        else:
+            with st.spinner("Downloading..."):
+                try:
+                    # Use the proper download function with actual credentials
+                    course_id = st.session_state.selected_course_id
+                    num_students, num_files, metadata = download_submissions_flat(
+                        canvas_url,
+                        canvas_token,
+                        course_id,
+                        int(assignment_id),
+                        dest_dir="./submissions",
+                        clean_dest=True
+                    )
+                    st.success(f"Downloaded {num_students} submissions ({num_files} files)")
+                    st.session_state.download_metadata = metadata
+                except Exception as e:
+                    st.error(f"Error downloading submissions: {e}")
+                    import traceback
+                    st.error(traceback.format_exc())
+
+with col2:
+    if st.button("Load from Folder"):
+        try:
+            with st.spinner("Loading submissions..."):
+                submissions = load_submissions_from_folder("./submissions")
+                
+                if not submissions:
+                    st.warning("⚠️ No submissions found in ./submissions directory")
+                    st.info("Please download submissions first or check the directory")
+                else:
+                    st.session_state.loaded_reviews = submissions
+                    st.success(f"✓ Loaded {len(submissions)} submissions for grading")
+                    
+                    # Show sample submissions
+                    with st.expander("📋 Sample Submissions Loaded"):
+                        st.write("First 5 submissions:")
+                        for i, sub in enumerate(submissions[:5]):
+                            st.text(f"{i+1}. {sub['name']} (ID: {sub['user_id']})")
+                            if len(submissions) > 5:
+                                st.text(f"... and {len(submissions) - 5} more")
+                                break
+        except Exception as e:
+            st.error(f"Error loading submissions: {e}")
+            import traceback
+            st.error(traceback.format_exc())
+
+    # Step 2: Grading
+    st.header("2. AI Grading")
+elif "download_metadata" in st.session_state:
+    st.info("⬆️ Submissions downloaded - Click 'Load from Folder' to continue")
+else:
+    st.info("⬆️ No submissions loaded - Download or load submissions to begin")
+
+    if st.button("Start Grading"):
+=======
+    
+    if st.button("Start Grading"):
+        handler = BookReviewHandler()
+        progress_bar = st.progress(0)
+        status_text = st.empty()
+        
+        grades = []
+=======
+# Show current status and next steps
+st.divider()
+if "loaded_reviews" in st.session_state and st.session_state.loaded_reviews:
+    st.info(f"📚 Ready to grade {len(st.session_state.loaded_reviews)} book reviews")
+    
+    # Step 2: Grading
+    st.header("2. AI Grading")
+    
+    if st.button("Start Grading"):
+        handler = BookReviewHandler()
+        progress_bar = st.progress(0)
+        status_text = st.empty()
+        
+        grades = []
+elif "download_metadata" in st.session_state:
+    st.info("⬆️ Submissions downloaded - Click 'Load from Folder' to continue")
+else:
+    st.info("⬆️ No submissions loaded - Download or load submissions to begin")
+=======
+    # Step 2: Grading
+    st.header("2. AI Grading")
+elif "download_metadata" in st.session_state:
+    st.info("⬆️ Submissions downloaded - Click 'Load from Folder' to continue")
+else:
+    st.info("⬆️ No submissions loaded - Download or load submissions to begin")
+
+    if st.button("Start Grading"):
+=======
+    
+    if st.button("Start Grading"):
+        handler = BookReviewHandler()
+        progress_bar = st.progress(0)
+        status_text = st.empty()
+        
+        grades = []
+        total = len(st.session_state.loaded_reviews)
+        
+        for i, sub in enumerate(st.session_state.loaded_reviews):
+            status_text.text(f"Grading {sub['name']}...")
+            
+            # Grade the text
+            result = handler.grade_review(sub['name'], sub['text'])
+            
+            # Apply Multiplier & Cap at 100
+            final_score = min(100.0, result['score'] * score_multiplier)
+            
+            grades.append({
+                "ID": sub['user_id'],
+                "Student": sub['name'],
+                "Raw Score": result['score'],
+                "Final Score": round(final_score, 2),
+                "Feedback": result['feedback'],
+                "Breakdown": str(result['sections']) # Store JSON as string for export
+            })
+            
+            progress_bar.progress((i + 1) / total)
+            
+        st.session_state.review_grades = grades
+        st.success(f"🎉 Grading Complete! {len(grades)} book reviews graded successfully")
+        
+        # Show grading summary
+        total_score = sum(grade['Final Score'] for grade in grades)
+        avg_score = total_score / len(grades) if grades else 0
+        
+        st.info(f"📊 Grading Summary:")
+        st.write(f"- Total reviews graded: {len(grades)}")
+        st.write(f"- Average score: {avg_score:.1f}/100")
+        st.write(f"- Score multiplier applied: {score_multiplier}x")
+
+# Step 3: Review & Export
+if st.session_state.review_grades:
+    st.header("3. Review Results")
+    
+    # Show grading status
+    st.success(f"✅ {len(st.session_state.review_grades)} book reviews have been graded and are ready for export")
+=======
+    df = pd.DataFrame(st.session_state.review_grades)
+    st.dataframe(df)
+    
+    # Export using the book review export function
+    if st.button("Export to Excel"):
+        try:
+            output_path = Path("./submissions") / f"book_reviews_graded.xlsx"
+            export_book_reviews_to_excel(st.session_state.review_grades, output_path)
+            st.success(f"✓ Exported to {output_path}")
+            
+            # Store export path for upload
+            st.session_state.export_path = output_path
+            
+            # Provide download link
+            with open(output_path, "rb") as f:
+                st.download_button(
+                    label="⬇️ Download Book Reviews (Excel)",
+                    data=f,
+                    file_name="book_reviews_graded.xlsx",
+                    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                )
+        except Exception as e:
+            st.error(f"Error creating Excel file: {e}")
+            import traceback
+            st.error(traceback.format_exc())
+
+    # Show export status
+    st.success("✅ Grades exported successfully - Ready for Canvas upload")
+
+# Step 4: Upload to Canvas
+st.header("4. Upload to Canvas")
+
+# Show upload guidance
+if "review_grades" in st.session_state and st.session_state.review_grades:
+    if "export_path" in st.session_state and st.session_state.export_path.exists():
+        st.info(f"📤 Ready to upload {len(st.session_state.review_grades)} graded book reviews to Canvas")
+    else:
+        st.info("📤 Click 'Export to Excel' first to prepare grades for upload")
+else:
+    st.info("⬆️ No grades available - Complete grading first")
+    
+# Check if we have an export path
+export_path = Path("./submissions") / f"book_reviews_graded.xlsx"
+
+if export_path.exists():
+    st.success(f"✅ Export file ready: {export_path.name}")
+=======
+        
+        if st.button("📤 Upload Grades to Canvas", type="primary"):
+            try:
+                from shared.grade_uploader import upload_all_from_xlsx
+                
+                with st.spinner("Uploading grades to Canvas..."):
+                    # Get credentials and course/assignment info
+                    course_id = st.session_state.selected_course_id
+                    
+                    # Upload grades
+                    successes, failures, failure_details = upload_all_from_xlsx(
+                        canvas_url,
+                        canvas_token,
+                        course_id,
+                        int(assignment_id),
+                        str(export_path)
+                    )
+                    
+                    st.success(f"✓ Successfully uploaded {successes} grades to Canvas!")
+                    
+                    if failures > 0:
+                        st.warning(f"⚠️ {failures} uploads failed:")
+                        for student, error in failure_details:
+                            st.error(f"- {student}: {error}")
+                    
+                    # Show upload summary
+                    st.info("📊 Upload Summary:")
+                    st.write(f"- Total attempts: {successes + failures}")
+                    st.write(f"- Successful uploads: {successes}")
+                    st.write(f"- Failed uploads: {failures}")
+                    
+            except Exception as e:
+                st.error(f"Error uploading grades: {e}")
+                import traceback
+                st.error(traceback.format_exc())
+    else:
+        st.info("⬆️ Please export grades to Excel first")

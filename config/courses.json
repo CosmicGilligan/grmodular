@@ -17,7 +17,7 @@
       "enabled": true
     },
     "HIST 110": {
-      "canvas_id": 2492650,
+      "canvas_id": 2489265,
       "base_course_number": 110,
       "course_type": "USHistory",
       "embeddings_path": "~/dev/kb/text/USHistory",

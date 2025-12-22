@@ -251,7 +251,7 @@ if st.session_state.selected_course and st.session_state.exam_handler:
     if st.button("Download Submissions from Canvas"):
         try:
             with st.spinner("Downloading exam submissions..."):
-                # Download submissions to temporary directory
+                # Download submissions to submissions directory
                 # Use the correct ID for downloading (quiz ID for quizzes, assignment ID for assignments)
                 download_id = handler.get_submission_download_id()
                 num_students, num_files, metadata = download_submissions_flat(
@@ -259,7 +259,7 @@ if st.session_state.selected_course and st.session_state.exam_handler:
                     canvas_token,
                     course_id,
                     download_id,
-                    dest_dir="./temp_submissions",
+                    dest_dir="./submissions",
                     clean_dest=True
                 )
                 
@@ -271,7 +271,7 @@ if st.session_state.selected_course and st.session_state.exam_handler:
                 # Load submissions into entry list format
                 # Format: [student_name, submission_text, feedback]
                 from pathlib import Path
-                submissions_dir = Path("./temp_submissions")
+                submissions_dir = Path("./submissions")
                 
                 # DEBUG: Show metadata structure
                 with st.expander("🔍 Debug Info - Metadata Structure"):
@@ -575,6 +575,22 @@ if st.session_state.entryList and st.session_state.exam_handler:
         if score_multiplier > 1.0:
             st.info(f"✨ Scores were boosted by {(score_multiplier - 1.0) * 100:.0f}% using the score multiplier")
         
+        # Automatically export to Excel
+        try:
+            from shared.exam_export import export_exam_to_excel
+            output_path = Path("./submissions") / f"graded_exam_{handler.canvas_assignment_id}.xlsx"
+            metadata = st.session_state.get('metadata', {})
+            export_exam_to_excel(entryList, metadata, output_path, handler.total_points)
+            st.success(f"✓ Automatically exported to {output_path}")
+            
+            # Store export path for upload
+            st.session_state.export_path = output_path
+            
+        except Exception as e:
+            st.error(f"Error creating Excel file: {e}")
+            import traceback
+            st.error(traceback.format_exc())
+        
         # Update session state
         st.session_state.entryList = entryList
 
@@ -600,7 +616,7 @@ if st.session_state.entryList:
         if st.button("📤 Export to Excel", type="primary"):
             try:
                 from shared.exam_export import export_exam_to_excel
-                output_path = Path("./temp_submissions") / f"graded_exam_{handler.canvas_assignment_id}.xlsx"
+                output_path = Path("./submissions") / f"graded_exam_{handler.canvas_assignment_id}.xlsx"
                 metadata = st.session_state.get('metadata', {})
                 export_exam_to_excel(entryList, metadata, output_path, handler.total_points)
                 st.success(f"✓ Exported to {output_path}")
