@@ -78,7 +78,7 @@ def export_exam_to_excel(entry_list: List[List], metadata: dict, output_path: Pa
 # UPDATE for shared/exam_export.py
 # Replace or update the export_book_reviews_to_excel function
 
-def export_book_reviews_to_excel(grades: List[Dict], output_path: Path) -> None:
+def export_book_reviews_to_excel(grades: List[Dict], output_path: Path, total_points: float = 100.0) -> None:
     """
     Export book review grades to Excel format for Canvas upload.
     Handles selective grading - only uploads students with actual grades.
@@ -86,6 +86,7 @@ def export_book_reviews_to_excel(grades: List[Dict], output_path: Path) -> None:
     Args:
         grades: List of grade dicts with ID, Student, Final Score, Feedback, Breakdown
         output_path: Path to save Excel file
+        total_points: Total possible points from the rubric (default: 100.0)
     """
     import ast
     
@@ -98,7 +99,7 @@ def export_book_reviews_to_excel(grades: List[Dict], output_path: Path) -> None:
         
         # Format feedback with score and breakdown
         feedback_parts = [
-            f"Score: {grade['Final Score']:.2f}/100.00",
+            f"Score: {grade['Final Score']:.2f}/{total_points:.2f}",
             "",
             grade['Feedback']
         ]
@@ -138,7 +139,7 @@ def export_book_reviews_to_excel(grades: List[Dict], output_path: Path) -> None:
             'Student Last Name': last_name,
             'Student First Name': first_name,
             'Student Submission Text': '',
-            'Grade': f"{grade['Final Score']:.2f}/100.00 - {full_feedback}",
+            'Grade': f"{grade['Final Score']:.2f}/{total_points:.2f} - {full_feedback}",
             'Upload?': 'yes'
         })
     

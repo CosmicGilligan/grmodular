@@ -1,0 +1,265 @@
+{
+  "assignment": {
+    "id": 21717683,
+    "position": 3,
+    "description": "<div style=\"font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; line-height: 1.6; color: #1b1f23;\">\n<div style=\"background: linear-gradient(135deg,#3b82f6 0%, #10b981 100%); padding: 18px; border-radius: 12px; color: #fff;\">\n<h2 style=\"margin: 0 0 8px 0;\">An Unthinkable History — Extra Credit</h2>\n<div>Extra Credit Assignment • Total Points: <strong>200</strong></div>\n</div>\n<p><strong>Lesson Notebook:</strong><br>📎 <a href=\"https://jupyter.historynetmedia.net/lectures/04-20th/trouillot.html\" target=\"_new\">Open the Jupyter Book lesson</a></p>\n<hr>\n<h3><strong>📌 Purpose</strong></h3>\n<p>This optional extra credit assignment allows you to recover points by demonstrating a deep understanding of Michel-Rolph Trouillot’s chapter <em>“An Unthinkable History: The Haitian Revolution as a Non-Event”</em> and by connecting his ideas to broader questions about how history is made. This extra credit assignment is not an alternative to the book review project. If you do not submit a book review you will not receive credit for this assignment.</p>\n<p>Our goal is <strong>not</strong> to blame white people, Europeans, or historians as evil or stupid. Instead, we are trying to understand the <strong>systemic structures and worldviews</strong> that made the Haitian Revolution seem “unthinkable” to so many people at the time and to later historians.</p>\n<hr>\n<h3><strong>🧰 Your Options</strong></h3>\n<p>Choose <strong>one</strong> of the following formats:</p>\n<ul>\n<li><strong>Option A: Written Essay</strong> (about 3–4 double-spaced pages, ~900–1,200 words)</li>\n<li><strong>Option B: Multimedia Presentation</strong> (about 5–7 minutes; narrated slideshow, video, podcast with visuals, etc.)</li>\n</ul>\n<p>Both options will be graded using the same rubric and must address the prompts below.</p>\n<hr>\n<h3><strong>📝 Prompts (Answer All Four)</strong></h3>\n<ol>\n<li><strong>Trouillot’s Thesis:</strong> In your own words, explain what Trouillot means when he calls the Haitian Revolution an <em>“unthinkable history.”</em> How is this different from a history that is simply forgotten or ignored?</li>\n<li><strong>Worldview and Systems:</strong> Describe how the worldview of planters, officials, or historians made it difficult for them to recognize the Haitian Revolution as a genuine political revolution. Focus on <em>structures, assumptions, and categories</em> (race, slavery, “civilization”) rather than attacking individual people as evil or stupid.</li>\n<li><strong>Silencing the Revolution:</strong> Using one example from the chapter, explain how the revolution was minimized, erased, or “banalized” in later historical writing or public memory. What does this example reveal about how power shapes what counts as important history?</li>\n<li><strong>Modern Connection:</strong> Identify a modern example (from politics, society, or media) where you suspect something important is being silenced or treated as “unthinkable.” Explain how Trouillot’s framework helps you analyze that example. Be specific about the parallels.</li>\n</ol>\n<p><strong>For the written essay:</strong> Answer these prompts in connected paragraphs rather than as four isolated short answers. You may organize your essay however you like, but all four areas must be clearly addressed.</p>\n<p><strong>For the multimedia presentation:</strong> Use slides, images, audio, or video to walk the viewer through your answers to all four prompts. Your visuals should support your explanation, not replace it.</p>\n<hr>\n<h3><strong>💡 Tips for Success</strong></h3>\n<ul>\n<li>Begin by reviewing the Jupyter Book lesson and your notes from the reading.</li>\n<li>Make sure you clearly explain Trouillot’s key concepts: <em>unthinkable history, silencing, worldview, systems, archival power</em>.</li>\n<li>Use at least <strong>one specific example</strong> from the chapter (a quotation or a detailed description) and explain why it matters.</li>\n<li>When making modern connections, focus on analysis, not ranting. Show how ideas from the reading help you see the present differently.</li>\n<li>Proofread your work before submitting, or rehearse your presentation to ensure it is clear and organized.</li>\n</ul>\n<hr>\n<h3><strong>📊 Grading &amp; Progression</strong></h3>\n<ul>\n<li><strong>Total:</strong> 200 points</li>\n<li>Graded using a <strong>12-point rubric</strong> (3/2/1/0 across four criteria), scaled to 200 points in Canvas.</li>\n<li>You should aim to score at least <strong>134/200</strong> points to continue confidently to the next module.</li>\n</ul>\n<hr>\n<h3><strong>⚖ Academic Integrity</strong></h3>\n<p>There is <strong>no need</strong> to use AI tools to complete this assignment. You <em>may</em> use AI to help you <strong>format or polish</strong> your writing, but the ideas, analysis, and examples you submit must be entirely your own. Submitting AI-generated answers as your own work is considered academic dishonesty.</p>\n<hr>\n<h3><strong>📂 Submission</strong></h3>\n<ul>\n<li><strong>Written Essay:</strong> Upload your document as a PDF, DOCX, or text file.</li>\n<li><strong>Multimedia Presentation:</strong> Upload a video file or a link to a hosted video (YouTube unlisted, Google Drive, etc.). Make sure sharing permissions allow your instructor to view it.</li>\n</ul>\n<hr>\n<p><strong>↩️ Back to the lesson:</strong> <a href=\"https://jupyter.historynetmedia.net/lectures/04-20th/trouillot.html\" target=\"_new\">Return to the Jupyter Book notebook</a></p>\n</div><script src=\"https://instructure-uploads.s3.amazonaws.com/account_10690000000081284/attachments/140455467/MesaMobile.js\"></script>",
+    "points_possible": 200.0,
+    "grading_type": "points",
+    "created_at": "2025-11-21T18:33:54Z",
+    "updated_at": "2025-12-30T18:22:32Z",
+    "due_at": "2025-12-21T07:59:59Z",
+    "final_grader_id": null,
+    "grader_count": 0,
+    "graders_anonymous_to_graders": false,
+    "grader_comments_visible_to_graders": true,
+    "grader_names_visible_to_final_grader": true,
+    "lock_at": "2025-12-21T07:59:59Z",
+    "unlock_at": null,
+    "assignment_group_id": 4366168,
+    "peer_reviews": false,
+    "anonymous_peer_reviews": false,
+    "automatic_peer_reviews": false,
+    "intra_group_peer_reviews": false,
+    "post_to_sis": false,
+    "grade_group_students_individually": false,
+    "group_category_id": null,
+    "grading_standard_id": null,
+    "moderated_grading": false,
+    "hide_in_gradebook": false,
+    "omit_from_final_grade": false,
+    "suppress_assignment": false,
+    "anonymous_instructor_annotations": false,
+    "anonymous_grading": false,
+    "allowed_attempts": -1,
+    "annotatable_attachment_id": null,
+    "secure_params": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJsdGlfYXNzaWdubWVudF9pZCI6IjRkNjgxZGYwLWQ3N2UtNDQ0Yi1hNzBiLWM2MGM5ZDA5ZGFjZCIsImx0aV9hc3NpZ25tZW50X2Rlc2NyaXB0aW9uIjoiXHUwMDNjZGl2IHN0eWxlPVwiZm9udC1mYW1pbHk6IHN5c3RlbS11aSwgLWFwcGxlLXN5c3RlbSwgU2Vnb2UgVUksIFJvYm90bywgQXJpYWwsIHNhbnMtc2VyaWY7IGxpbmUtaGVpZ2h0OiAxLjY7IGNvbG9yOiAjMWIxZjIzO1wiXHUwMDNlXG5cdTAwM2NkaXYgc3R5bGU9XCJiYWNrZ3JvdW5kOiBsaW5lYXItZ3JhZGllbnQoMTM1ZGVnLCMzYjgyZjYgMCUsICMxMGI5ODEgMTAwJSk7IHBhZGRpbmc6IDE4cHg7IGJvcmRlci1yYWRpdXM6IDEycHg7IGNvbG9yOiAjZmZmO1wiXHUwMDNlXG5cdTAwM2NoMiBzdHlsZT1cIm1hcmdpbjogMCAwIDhweCAwO1wiXHUwMDNlQW4gVW50aGlua2FibGUgSGlzdG9yeSDigJQgRXh0cmEgQ3JlZGl0XHUwMDNjL2gyXHUwMDNlXG5cdTAwM2NkaXZcdTAwM2VFeHRyYSBDcmVkaXQgQXNzaWdubWVudCDigKIgVG90YWwgUG9pbnRzOiBcdTAwM2NzdHJvbmdcdTAwM2UyMDBcdTAwM2Mvc3Ryb25nXHUwMDNlXHUwMDNjL2Rpdlx1MDAzZVxuXHUwMDNjL2Rpdlx1MDAzZVxuXHUwMDNjcFx1MDAzZVx1MDAzY3N0cm9uZ1x1MDAzZUxlc3NvbiBOb3RlYm9vazpcdTAwM2Mvc3Ryb25nXHUwMDNlXHUwMDNjYnJcdTAwM2Xwn5OOIFx1MDAzY2EgaHJlZj1cImh0dHBzOi8vanVweXRlci5oaXN0b3J5bmV0bWVkaWEubmV0L2xlY3R1cmVzLzA0LTIwdGgvdHJvdWlsbG90Lmh0bWxcIiB0YXJnZXQ9XCJfbmV3XCJcdTAwM2VPcGVuIHRoZSBKdXB5dGVyIEJvb2sgbGVzc29uXHUwMDNjL2FcdTAwM2VcdTAwM2MvcFx1MDAzZVxuXHUwMDNjaHJcdTAwM2Vcblx1MDAzY2gzXHUwMDNlXHUwMDNjc3Ryb25nXHUwMDNl8J-TjCBQdXJwb3NlXHUwMDNjL3N0cm9uZ1x1MDAzZVx1MDAzYy9oM1x1MDAzZVxuXHUwMDNjcFx1MDAzZVRoaXMgb3B0aW9uYWwgZXh0cmEgY3JlZGl0IGFzc2lnbm1lbnQgYWxsb3dzIHlvdSB0byByZWNvdmVyIHBvaW50cyBieSBkZW1vbnN0cmF0aW5nIGEgZGVlcCB1bmRlcnN0YW5kaW5nIG9mIE1pY2hlbC1Sb2xwaCBUcm91aWxsb3TigJlzIGNoYXB0ZXIgXHUwMDNjZW1cdTAwM2XigJxBbiBVbnRoaW5rYWJsZSBIaXN0b3J5OiBUaGUgSGFpdGlhbiBSZXZvbHV0aW9uIGFzIGEgTm9uLUV2ZW504oCdXHUwMDNjL2VtXHUwMDNlIGFuZCBieSBjb25uZWN0aW5nIGhpcyBpZGVhcyB0byBicm9hZGVyIHF1ZXN0aW9ucyBhYm91dCBob3cgaGlzdG9yeSBpcyBtYWRlLiBUaGlzIGV4dHJhIGNyZWRpdCBhc3NpZ25tZW50IGlzIG5vdCBhbiBhbHRlcm5hdGl2ZSB0byB0aGUgYm9vayByZXZpZXcgcHJvamVjdC4uLi4gKHRydW5jYXRlZCkifQ.8njhRCzY8HS3rzNOUmymNZDSKkcxaYUD439_MKIlaD0",
+    "lti_context_id": "4d681df0-d77e-444b-a70b-c60c9d09dacd",
+    "course_id": 2492649,
+    "name": "High Value Extra Credit: An Unthinkable History",
+    "submission_types": [
+      "online_url",
+      "media_recording",
+      "online_upload"
+    ],
+    "has_submitted_submissions": true,
+    "due_date_required": false,
+    "max_name_length": 255,
+    "in_closed_grading_period": false,
+    "graded_submissions_exist": true,
+    "is_quiz_assignment": false,
+    "can_duplicate": true,
+    "original_course_id": null,
+    "original_assignment_id": null,
+    "original_lti_resource_link_id": null,
+    "original_assignment_name": null,
+    "original_quiz_id": null,
+    "workflow_state": "published",
+    "important_dates": false,
+    "muted": false,
+    "html_url": "https://sdccd.instructure.com/courses/2492649/assignments/21717683",
+    "has_overrides": false,
+    "needs_grading_count": 0,
+    "sis_assignment_id": null,
+    "integration_id": null,
+    "integration_data": {},
+    "allowed_extensions": [
+      "docx",
+      "pdf"
+    ],
+    "use_rubric_for_grading": false,
+    "free_form_criterion_comments": false,
+    "rubric": [
+      {
+        "id": "_6751",
+        "points": 80.0,
+        "description": "Argument & Interpretation",
+        "long_description": "Provides a clear, nuanced interpretation of Trouillot’s concept of ‘unthinkable history.’ Goes beyond summary to analyze how systems, structures, and dominant worldviews shaped what observers could and could not see.",
+        "criterion_use_range": false,
+        "ratings": [
+          {
+            "id": "_6620",
+            "points": 80.0,
+            "description": "Meets",
+            "long_description": ""
+          },
+          {
+            "id": "_6843",
+            "points": 0.0,
+            "description": "Does Not Meet",
+            "long_description": ""
+          }
+        ]
+      },
+      {
+        "id": "_3555",
+        "points": 60.0,
+        "description": "Use of Trouillot’s Chapter",
+        "long_description": "Incorporates accurate and specific examples from Trouillot’s chapter, such as the formulas of erasure and banalization, planter accounts, or historical interpretations. Demonstrates a correct understanding of how silencing occurs.",
+        "criterion_use_range": false,
+        "ratings": [
+          {
+            "id": "_430",
+            "points": 60.0,
+            "description": "Meets",
+            "long_description": ""
+          },
+          {
+            "id": "_4942",
+            "points": 0.0,
+            "description": "Does Not Meet",
+            "long_description": ""
+          }
+        ]
+      },
+      {
+        "id": "_259",
+        "points": 40.0,
+        "description": "Modern Connection",
+        "long_description": "Identifies a meaningful modern example of a silenced, invisible, or ‘unthinkable’ event or group. Clearly explains how Trouillot’s framework helps analyze the contemporary case.",
+        "criterion_use_range": false,
+        "ratings": [
+          {
+            "id": "_9415",
+            "points": 40.0,
+            "description": "Meets",
+            "long_description": ""
+          },
+          {
+            "id": "_3438",
+            "points": 0.0,
+            "description": "Does Not Meet",
+            "long_description": ""
+          }
+        ]
+      },
+      {
+        "id": "_380",
+        "points": 20.0,
+        "description": "Writing Quality & Mechanics",
+        "long_description": "Uses complete sentences, coherent structure, and clear reasoning. Grammar and mechanics are appropriate for college-level writing, with polished presentation and effective communication.",
+        "criterion_use_range": false,
+        "ratings": [
+          {
+            "id": "_5265",
+            "points": 20.0,
+            "description": "Meets",
+            "long_description": ""
+          },
+          {
+            "id": "_7735",
+            "points": 0.0,
+            "description": "Does Not Meet",
+            "long_description": ""
+          }
+        ]
+      }
+    ],
+    "rubric_settings": {
+      "id": 1603706,
+      "title": "An Unthinkable History",
+      "points_possible": 200.0,
+      "free_form_criterion_comments": false,
+      "hide_score_total": false,
+      "hide_points": false
+    },
+    "published": true,
+    "unpublishable": false,
+    "only_visible_to_overrides": false,
+    "visible_to_everyone": true,
+    "locked_for_user": false,
+    "submissions_download_url": "https://sdccd.instructure.com/courses/2492649/assignments/21717683/submissions?zip=1",
+    "post_manually": false,
+    "anonymize_students": false,
+    "new_quizzes_anonymous_participants": false,
+    "require_lockdown_browser": false,
+    "restrict_quantitative_data": false
+  },
+  "rubric_criteria": [
+    {
+      "id": "_6751",
+      "description": "Argument & Interpretation",
+      "long_description": "Provides a clear, nuanced interpretation of Trouillot’s concept of ‘unthinkable history.’ Goes beyond summary to analyze how systems, structures, and dominant worldviews shaped what observers could and could not see.",
+      "points": 80.0,
+      "ratings": [
+        {
+          "id": "_6620",
+          "description": "Meets",
+          "long_description": "",
+          "points": 80.0
+        },
+        {
+          "id": "_6843",
+          "description": "Does Not Meet",
+          "long_description": "",
+          "points": 0.0
+        }
+      ]
+    },
+    {
+      "id": "_3555",
+      "description": "Use of Trouillot’s Chapter",
+      "long_description": "Incorporates accurate and specific examples from Trouillot’s chapter, such as the formulas of erasure and banalization, planter accounts, or historical interpretations. Demonstrates a correct understanding of how silencing occurs.",
+      "points": 60.0,
+      "ratings": [
+        {
+          "id": "_430",
+          "description": "Meets",
+          "long_description": "",
+          "points": 60.0
+        },
+        {
+          "id": "_4942",
+          "description": "Does Not Meet",
+          "long_description": "",
+          "points": 0.0
+        }
+      ]
+    },
+    {
+      "id": "_259",
+      "description": "Modern Connection",
+      "long_description": "Identifies a meaningful modern example of a silenced, invisible, or ‘unthinkable’ event or group. Clearly explains how Trouillot’s framework helps analyze the contemporary case.",
+      "points": 40.0,
+      "ratings": [
+        {
+          "id": "_9415",
+          "description": "Meets",
+          "long_description": "",
+          "points": 40.0
+        },
+        {
+          "id": "_3438",
+          "description": "Does Not Meet",
+          "long_description": "",
+          "points": 0.0
+        }
+      ]
+    },
+    {
+      "id": "_380",
+      "description": "Writing Quality & Mechanics",
+      "long_description": "Uses complete sentences, coherent structure, and clear reasoning. Grammar and mechanics are appropriate for college-level writing, with polished presentation and effective communication.",
+      "points": 20.0,
+      "ratings": [
+        {
+          "id": "_5265",
+          "description": "Meets",
+          "long_description": "",
+          "points": 20.0
+        },
+        {
+          "id": "_7735",
+          "description": "Does Not Meet",
+          "long_description": "",
+          "points": 0.0
+        }
+      ]
+    }
+  ],
+  "total_points": 200.0,
+  "formatted_rubric": "GRADING RUBRIC:\n\nCRITERION 1: Argument & Interpretation (80.0 points)\nDetails: Provides a clear, nuanced interpretation of Trouillot’s concept of ‘unthinkable history.’ Goes beyond summary to analyze how systems, structures, and dominant worldviews shaped what observers could and could not see.\nRating Scale:\n  - Meets (80.0 pts)\n  - Does Not Meet (0.0 pts)\n\nCRITERION 2: Use of Trouillot’s Chapter (60.0 points)\nDetails: Incorporates accurate and specific examples from Trouillot’s chapter, such as the formulas of erasure and banalization, planter accounts, or historical interpretations. Demonstrates a correct understanding of how silencing occurs.\nRating Scale:\n  - Meets (60.0 pts)\n  - Does Not Meet (0.0 pts)\n\nCRITERION 3: Modern Connection (40.0 points)\nDetails: Identifies a meaningful modern example of a silenced, invisible, or ‘unthinkable’ event or group. Clearly explains how Trouillot’s framework helps analyze the contemporary case.\nRating Scale:\n  - Meets (40.0 pts)\n  - Does Not Meet (0.0 pts)\n\nCRITERION 4: Writing Quality & Mechanics (20.0 points)\nDetails: Uses complete sentences, coherent structure, and clear reasoning. Grammar and mechanics are appropriate for college-level writing, with polished presentation and effective communication.\nRating Scale:\n  - Meets (20.0 pts)\n  - Does Not Meet (0.0 pts)\n\n",
+  "_metadata": {
+    "cached_at": "2025-12-30T11:30:57.732015",
+    "cache_key": "bd46c7b2942b0aecefbe4dada445c4d3"
+  }
+}

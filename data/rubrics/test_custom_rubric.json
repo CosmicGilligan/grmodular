@@ -1,0 +1,121 @@
+{
+  "rubric_name": "Test Essay Rubric",
+  "rubric_criteria": [
+    {
+      "description": "Thesis Statement",
+      "long_description": "Clear, arguable thesis statement",
+      "points": 20,
+      "ratings": [
+        {
+          "description": "Excellent",
+          "points": 20,
+          "long_description": "Clear, specific, arguable"
+        },
+        {
+          "description": "Good",
+          "points": 15,
+          "long_description": "Clear but could be more specific"
+        },
+        {
+          "description": "Fair",
+          "points": 10,
+          "long_description": "Present but weak"
+        },
+        {
+          "description": "Poor",
+          "points": 5,
+          "long_description": "Missing or unclear"
+        }
+      ]
+    },
+    {
+      "description": "Evidence and Analysis",
+      "long_description": "Quality and relevance of evidence, depth of analysis",
+      "points": 40,
+      "ratings": [
+        {
+          "description": "Excellent",
+          "points": 40,
+          "long_description": "Strong evidence, insightful analysis"
+        },
+        {
+          "description": "Good",
+          "points": 30,
+          "long_description": "Good evidence, solid analysis"
+        },
+        {
+          "description": "Fair",
+          "points": 20,
+          "long_description": "Some evidence, basic analysis"
+        },
+        {
+          "description": "Poor",
+          "points": 10,
+          "long_description": "Little evidence, weak analysis"
+        }
+      ]
+    },
+    {
+      "description": "Organization",
+      "long_description": "Logical structure and flow",
+      "points": 20,
+      "ratings": [
+        {
+          "description": "Excellent",
+          "points": 20,
+          "long_description": "Clear structure, smooth transitions"
+        },
+        {
+          "description": "Good",
+          "points": 15,
+          "long_description": "Good structure, mostly clear"
+        },
+        {
+          "description": "Fair",
+          "points": 10,
+          "long_description": "Some structure issues"
+        },
+        {
+          "description": "Poor",
+          "points": 5,
+          "long_description": "Disorganized or confusing"
+        }
+      ]
+    },
+    {
+      "description": "Grammar and Mechanics",
+      "long_description": "Grammar, spelling, punctuation",
+      "points": 20,
+      "ratings": [
+        {
+          "description": "Excellent",
+          "points": 20,
+          "long_description": "Flawless or near flawless"
+        },
+        {
+          "description": "Good",
+          "points": 15,
+          "long_description": "Minor errors that do not distract"
+        },
+        {
+          "description": "Fair",
+          "points": 10,
+          "long_description": "Some errors that distract"
+        },
+        {
+          "description": "Poor",
+          "points": 5,
+          "long_description": "Many errors that impede understanding"
+        }
+      ]
+    }
+  ],
+  "total_points": 100,
+  "description": "A test rubric for essay grading",
+  "source": "custom",
+  "created_at": "2025-12-26T08:32:19.649355",
+  "_metadata": {
+    "cached_at": "2025-12-26T08:32:19.649389",
+    "cache_key": "test_custom_rubric"
+  }
+}

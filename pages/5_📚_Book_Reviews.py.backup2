@@ -19,8 +19,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 from shared.canvas_submissions import download_submissions_flat, load_submissions_from_folder
-from assignment_handlers.generic_essay_handler import GenericEssayHandler
-from shared.rubric_manager import RubricManager
+from assignment_handlers.book_review_handler import BookReviewHandler
 from shared.exam_export import export_book_reviews_to_excel
 from shared.config_loader import get_config
 from shared.credentials import load_canvas_credentials, load_llm_keys
@@ -86,80 +85,6 @@ with st.sidebar:
     
     # Assignment ID
     assignment_id = st.text_input("Canvas Assignment ID")
-    
-    # Rubric Selection
-    st.subheader("📋 Rubric Selection")
-    
-    # Initialize rubric manager
-    if "rubric_manager" not in st.session_state:
-        st.session_state.rubric_manager = RubricManager()
-    
-    if "current_rubric" not in st.session_state:
-        st.session_state.current_rubric = None
-    
-    if "rubric_loaded" not in st.session_state:
-        st.session_state.rubric_loaded = False
-    
-    # Rubric loading options
-    rubric_tab1, rubric_tab2, rubric_tab3 = st.tabs(["🔄 Load from Canvas", "💾 Load Cached", "📝 Custom Rubric"])
-    
-    with rubric_tab1:
-        if st.button("📥 Load Rubric from Canvas", key="load_rubric_button"):
-            if not assignment_id:
-                st.error("Please enter an Assignment ID first")
-            else:
-                with st.spinner("Loading rubric from Canvas..."):
-                    try:
-                        course_id = st.session_state.selected_course_id
-                        rubric_data = st.session_state.rubric_manager.get_rubric_from_canvas(
-                            course_id, assignment_id, is_discussion=False, force_refresh=True
-                        )
-                        
-                        if rubric_data:
-                            st.session_state.current_rubric = rubric_data
-                            st.session_state.rubric_loaded = True
-                            st.success(f"✓ Loaded rubric: {st.session_state.rubric_manager.get_rubric_summary(rubric_data)}")
-                        else:
-                            st.error("Could not retrieve rubric from Canvas")
-                            
-                    except Exception as e:
-                        st.error(f"Error loading rubric: {e}")
-                        import traceback
-                        st.error(traceback.format_exc())
-    
-    with rubric_tab2:
-        # List cached rubrics
-        cached_rubrics = st.session_state.rubric_manager.list_cached_rubrics()
-        
-        if cached_rubrics:
-            rubric_options = {}
-            for rubric in cached_rubrics:
-                rubric_options[rubric['summary']] = rubric['cache_key']
-            
-            selected_cache_key = st.selectbox("Select cached rubric:", list(rubric_options.keys()))
-            
-            if st.button("📥 Load Selected Rubric"):
-                cache_key = rubric_options[selected_cache_key]
-                rubric_data = st.session_state.rubric_manager.load_rubric_from_cache(cache_key)
-                
-                if rubric_data:
-                    st.session_state.current_rubric = rubric_data
-                    st.session_state.rubric_loaded = True
-                    st.success(f"✓ Loaded cached rubric: {selected_cache_key}")
-                else:
-                    st.error("Could not load selected rubric")
-        else:
-            st.info("No cached rubrics found")
-    
-    with rubric_tab3:
-        st.info("Custom rubric creation coming soon...")
-    
-    # Show current rubric status
-    if st.session_state.rubric_loaded and st.session_state.current_rubric:
-        rubric_summary = st.session_state.rubric_manager.get_rubric_summary(st.session_state.current_rubric)
-        st.success(f"📋 Current Rubric: {rubric_summary}")
-    else:
-        st.warning("⚠️ No rubric loaded. Please load a rubric before grading.")
     
     st.divider()
     model_choice = st.selectbox("LLM Model", ["claude-sonnet-4-20250514", "gpt-4o"])
@@ -360,21 +285,8 @@ if st.session_state.loaded_reviews and st.session_state.selected_students:
                 raw_client = OpenAI(api_key=api_key)
             
             llm_client = make_llm(provider, raw_client)
-            
-            # Check if rubric is loaded
-            if not st.session_state.rubric_loaded or not st.session_state.current_rubric:
-                st.error("❌ No rubric loaded. Please load a rubric before grading.")
-                st.stop()
-            
-            handler = GenericEssayHandler(llm_client, st.session_state.rubric_manager)
-            
-            # Load the rubric into the handler
-            if not handler.load_rubric(st.session_state.current_rubric):
-                st.error("❌ Failed to load rubric into grading handler")
-                st.stop()
-                
+            handler = BookReviewHandler(llm_client)
             st.success(f"✓ LLM client initialized ({provider})")
-            st.success(f"✓ Using rubric: {handler.get_current_rubric_summary()}")
             
         except Exception as e:
             st.error(f"Error creating LLM client: {e}")
@@ -400,7 +312,7 @@ if st.session_state.loaded_reviews and st.session_state.selected_students:
             
             try:
                 # Call grading handler
-                result = handler.grade_essay(
+                result = handler.grade_review(
                     student_name=sub['name'],
                     submission_text=sub['text'],
                     user_id=sub['user_id']
@@ -415,12 +327,12 @@ if st.session_state.loaded_reviews and st.session_state.selected_students:
                 raw_score = result['score']
                 final_score = min(100.0, raw_score * score_multiplier)
                 
-                # Store in dict by user_id - use raw score for final recording
+                # Store in dict by user_id
                 st.session_state.review_grades[sub['user_id']] = {
                     "ID": sub['user_id'],
                     "Student": sub['name'],
                     "Raw Score": raw_score,
-                    "Final Score": raw_score,  # Use raw score instead of capped score
+                    "Final Score": round(final_score, 2),
                     "Feedback": result['feedback'],
                     "Breakdown": str(result.get('sections', {}))
                 }
@@ -456,14 +368,9 @@ if st.session_state.loaded_reviews and st.session_state.selected_students:
             successful_grades = [g['Final Score'] for g in st.session_state.review_grades.values() if g['Final Score'] > 0]
             avg_score = sum(successful_grades) / len(successful_grades)
             
-            # Get total points from rubric for display
-            display_total = 100
-            if st.session_state.rubric_loaded and st.session_state.current_rubric:
-                display_total = st.session_state.current_rubric.get('total_points', 100)
-            
             st.info(f"📊 Grading Summary:")
             st.write(f"- Successfully graded: {success_count}/{total}")
-            st.write(f"- Average score: {avg_score:.1f}/{display_total}")
+            st.write(f"- Average score: {avg_score:.1f}/100")
             st.write(f"- Score multiplier: {score_multiplier}x ({(score_multiplier-1)*100:.0f}% boost)")
         
         # AUTO-EXPORT to Excel
@@ -490,13 +397,7 @@ if st.session_state.loaded_reviews and st.session_state.selected_students:
                         })
                 
                 output_path = Path("./submissions") / "book_reviews_graded.xlsx"
-                
-                # Get total points from rubric (default to 100 if not available)
-                total_points = 100.0
-                if st.session_state.rubric_loaded and st.session_state.current_rubric:
-                    total_points = st.session_state.current_rubric.get('total_points', 100.0)
-                
-                export_book_reviews_to_excel(export_grades, output_path, total_points)
+                export_book_reviews_to_excel(export_grades, output_path)
                 st.session_state.export_path = output_path
                 st.success(f"✓ Auto-saved to {output_path}")
                 st.info(f"📝 Excel includes all {len(export_grades)} students ({len(st.session_state.review_grades)} newly graded)")

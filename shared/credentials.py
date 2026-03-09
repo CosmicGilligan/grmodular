@@ -39,7 +39,7 @@ def load_canvas_credentials() -> Tuple[str, str]:
         raise CredentialsError(
             f"Credentials file not found: {key_path}\n\n"
             f"Create ~/canvas-secrets.key with the following format:\n"
-            f"Line 1: Canvas API URL (e.g., https://canvas.instructure.com/api/v1)\n"
+            f"Line 1: Canvas base URL (e.g., https://canvas.instructure.com)\n"
             f"Line 2: Canvas API token\n"
             f"Line 3: Anthropic API key (optional)\n"
             f"Line 4: OpenAI API key (optional)\n"
@@ -62,10 +62,9 @@ def load_canvas_credentials() -> Tuple[str, str]:
             "Line 2: Canvas API token"
         )
     
-    # Normalize API URL
+    # Normalize API URL - just clean it, don't add /api/v1
+    # The Canvas API methods will handle adding /api/v1 to the path
     api_url = lines[0].rstrip("/")
-    if not api_url.endswith("/api/v1"):
-        api_url = api_url + "/api/v1"
     
     token = lines[1]
     

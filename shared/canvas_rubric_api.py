@@ -73,7 +73,9 @@ class CanvasRubricAPI:
         Returns:
             Dictionary containing assignment and rubric data
         """
-        url = f"{self.canvas_url}/api/v1/courses/{course_id}/assignments/{assignment_id}"
+        # Remove /api/v1 from canvas_url if it's there to avoid duplication
+        base_url = self.canvas_url.replace('/api/v1', '')
+        url = f"{base_url}/api/v1/courses/{course_id}/assignments/{assignment_id}"
         params = {
             'include[]': ['rubric']
         }
@@ -101,7 +103,9 @@ class CanvasRubricAPI:
         Returns:
             Associated assignment ID, or None if not found
         """
-        url = f"{self.canvas_url}/api/v1/courses/{course_id}/discussion_topics/{discussion_topic_id}"
+        # Remove /api/v1 from canvas_url if it's there to avoid duplication
+        base_url = self.canvas_url.replace('/api/v1', '')
+        url = f"{base_url}/api/v1/courses/{course_id}/discussion_topics/{discussion_topic_id}"
         
         try:
             response = requests.get(url, headers=self.headers)
@@ -152,7 +156,9 @@ class CanvasRubricAPI:
         Returns:
             List of assignment dictionaries
         """
-        url = f"{self.canvas_url}/api/v1/courses/{course_id}/assignments"
+        # Remove /api/v1 from canvas_url if it's there to avoid duplication
+        base_url = self.canvas_url.replace('/api/v1', '')
+        url = f"{base_url}/api/v1/courses/{course_id}/assignments"
         params = {
             'include[]': ['rubric'],
             'per_page': 100
@@ -262,7 +268,9 @@ class CanvasRubricAPI:
         Returns:
             List of submission data
         """
-        url = f"{self.canvas_url}/api/v1/courses/{course_id}/assignments/{assignment_id}/submissions"
+        # Remove /api/v1 from canvas_url if it's there to avoid duplication
+        base_url = self.canvas_url.replace('/api/v1', '')
+        url = f"{base_url}/api/v1/courses/{course_id}/assignments/{assignment_id}/submissions"
         params = {
             'include[]': ['user'],
             'per_page': 100
