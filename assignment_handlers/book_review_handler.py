@@ -11,18 +11,25 @@ class BookReviewHandler:
     Handler for grading book reviews of George Orwell's 1984
     """
     
-    def __init__(self, llm_client: LLMBase = None):
+    def __init__(self, llm_client: LLMBase = None, model: str = None):
         """
         Initialize the handler with an LLM client
-        
+
         Args:
             llm_client: LLM client for grading (from make_llm())
+            model: Model string to use for grading. Defaults to the value in
+                config/config.json (settings.default_model) if not provided.
         """
         if llm_client is None:
             raise ValueError("LLM client is required for grading")
-        
+
         self.llm = llm_client
         self.system_prompt = self._get_system_prompt()
+
+        if model is None:
+            from shared.config_loader import get_config
+            model = get_config().get_default_model()
+        self.model = model
 
     def grade_review(self, student_name: str, submission_text: str, user_id: str = None):
         """
@@ -65,7 +72,7 @@ Remember to return ONLY valid JSON with no markdown formatting."""
             logger.info(f"Grading {student_name}...")
             
             response = self.llm.generate(
-                model="claude-sonnet-4-20250514",
+                model=self.model,
                 messages=messages,
                 temperature=0.2,
                 max_tokens=2000

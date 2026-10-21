@@ -1,0 +1,270 @@
+{
+  "assignment": {
+    "id": 21983090,
+    "position": 3,
+    "description": "<div style=\"font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; line-height: 1.6; color: #1b1f23;\">\n<div style=\"background: linear-gradient(135deg, #1a2a4a 0%, #b8932a 100%); padding: 18px; border-radius: 12px; color: #fff;\">\n<h2 style=\"margin: 0 0 8px 0;\">Adams vs. Jefferson — Extra Credit</h2>\n<div>Extra Credit Assignment • Total Points: <strong>200</strong></div>\n</div>\n<p><strong>Assigned Reading:</strong><br>📖 John Ferling, <em>Adams vs. Jefferson: The Tumultuous Election of 1800</em> (Oxford University Press, 2004)</p>\n<hr>\n<p><a class=\"inline_disabled\" href=\"https://jupyter.historynetmedia.net/ushistory1/04National/ferling.html\" target=\"_blank\">Access the Jupyter Book Lesson</a><strong></strong></p>\n<h3><strong>📌 Purpose</strong></h3>\n<p>This optional extra credit assignment allows you to recover points by demonstrating a deep engagement with John Ferling's account of the Election of 1800 and by connecting his argument to a central question in democratic theory: <strong>Can democracy survive without difficult compromise?</strong></p>\n<p>The Election of 1800 nearly destroyed the young American republic. What saved it was not idealism, not law alone, and not force — it was a series of painful, imperfect compromises made by people who distrusted one another deeply. Your task is to analyze how and why those compromises happened, and what they reveal about the fragile mechanics of democratic government.</p>\n<p>This extra credit assignment is <strong>not</strong> an alternative to the book review project. If you do not submit a book review, you will not receive credit for this assignment.</p>\n<hr>\n<h3><strong>🧰 Your Options</strong></h3>\n<p>Choose <strong>one</strong> of the following formats:</p>\n<ul>\n<li><strong>Option A: Written Essay</strong> (about 3–4 double-spaced pages, ~900–1,200 words)</li>\n<li><strong>Option B: Multimedia Presentation</strong> (about 5–7 minutes; narrated slideshow, video, podcast with visuals, etc.)</li>\n</ul>\n<p>Both options will be graded using the same rubric and must address all four prompts below.</p>\n<hr>\n<h3><strong>📝 Prompts (Answer All Four)</strong></h3>\n<ol>\n<li><strong>Ferling's Argument:</strong> In your own words, explain what Ferling argues about why the Election of 1800 was so dangerous to American democracy. What specific structural weaknesses in the Constitution and the early party system nearly caused a constitutional collapse? How did those weaknesses get resolved — at least temporarily?</li>\n<li><strong>The Cost of Compromise:</strong> Identify one specific compromise described in the book — such as Alexander Hamilton's decision to support Jefferson over Burr, the Federalist holdouts in the House eventually yielding, or the informal assurances Jefferson offered to secure his election — and analyze it closely. Why was this compromise difficult or painful for the people involved? What did they have to give up or accept? What does this example reveal about how democracy actually functions under pressure?</li>\n<li><strong>When Compromise Fails:</strong> Ferling shows that not everyone was willing to compromise. Describe one figure or faction in the book who refused to bend — whether out of principle, ambition, or partisanship — and explain how their rigidity affected the outcome. What does this suggest about the dangers of treating political opponents as enemies rather than rivals?</li>\n<li><strong>Modern Connection:</strong> Identify a current or recent example from American politics in which the refusal — or the willingness — to compromise played a decisive role. Using Ferling's account of 1800 as a framework, analyze your modern example. What parallels do you see? What is different? Be specific: avoid vague generalizations and focus on concrete decisions, actors, and consequences.</li>\n</ol>\n<p><strong>For the written essay:</strong> Answer these prompts in connected paragraphs rather than as four isolated short answers. You may organize your essay however you like, but all four areas must be clearly addressed.</p>\n<p><strong>For the multimedia presentation:</strong> Use slides, images, audio, or video to walk the viewer through your answers to all four prompts. Your visuals should support your explanation, not replace it.</p>\n<hr>\n<h3><strong>💡 Tips for Success</strong></h3>\n<ul>\n<li>Draw your evidence directly from Ferling's book. Vague references to \"what happened in 1800\" without specific detail from the reading will not earn full credit.</li>\n<li>Key concepts to demonstrate in your response: <em>the Electoral College deadlock, the role of the House of Representatives, Hamilton vs. Burr, Federalist Party fractures, the informal \"deal\" of 1801, and the fragility of the peaceful transfer of power.</em></li>\n<li>For Prompt 4, focus on <em>analysis</em>, not partisan argument. You are not being asked whether compromise was right or wrong in your modern example — you are being asked to analyze it the way a historian would.</li>\n<li>Use at least <strong>two specific examples</strong> from the book (a quotation or detailed description) and explain why each one matters to your argument.</li>\n<li>Proofread your work before submitting, or rehearse your presentation to ensure it is clear and organized.</li>\n</ul>\n<hr>\n<h3><strong>📊 Grading &amp; Progression</strong></h3>\n<ul>\n<li><strong>Total:</strong> 200 points</li>\n<li>Graded using a <strong>12-point rubric</strong> (3/2/1/0 across four criteria), scaled to 200 points in Canvas.</li>\n<li>You should aim to score at least <strong>134/200</strong> points to continue confidently to the next module.</li>\n</ul>\n<hr>\n<h3><strong>⚖ Academic Integrity</strong></h3>\n<p>There is <strong>no need</strong> to use AI tools to complete this assignment. You <em>may</em> use AI to help you <strong>format or polish</strong> your writing, but the ideas, analysis, and examples you submit must be entirely your own. Submitting AI-generated answers as your own work is considered academic dishonesty.</p>\n<hr>\n<h3><strong>📂 Submission</strong></h3>\n<ul>\n<li><strong>Written Essay:</strong> Upload your document as a PDF, DOCX, or text file.</li>\n<li><strong>Multimedia Presentation:</strong> Upload a video file or a link to a hosted video (YouTube unlisted, Google Drive, etc.). Make sure sharing permissions allow your instructor to view it.</li>\n</ul>\n</div><script src=\"https://instructure-uploads.s3.amazonaws.com/account_10690000000081284/attachments/140455467/MesaMobile.js\"></script>",
+    "points_possible": 200.0,
+    "grading_type": "points",
+    "created_at": "2026-05-05T17:50:12Z",
+    "updated_at": "2026-05-05T19:19:09Z",
+    "due_at": "2026-06-02T06:59:59Z",
+    "final_grader_id": null,
+    "grader_count": 0,
+    "graders_anonymous_to_graders": false,
+    "grader_comments_visible_to_graders": true,
+    "grader_names_visible_to_final_grader": true,
+    "lock_at": "2026-06-02T06:59:59Z",
+    "unlock_at": null,
+    "assignment_group_id": 4391687,
+    "peer_reviews": false,
+    "anonymous_peer_reviews": false,
+    "automatic_peer_reviews": false,
+    "intra_group_peer_reviews": false,
+    "post_to_sis": false,
+    "grade_group_students_individually": false,
+    "group_category_id": null,
+    "grading_standard_id": null,
+    "moderated_grading": false,
+    "hide_in_gradebook": false,
+    "omit_from_final_grade": false,
+    "suppress_assignment": false,
+    "anonymous_instructor_annotations": false,
+    "anonymous_grading": false,
+    "allowed_attempts": -1,
+    "annotatable_attachment_id": null,
+    "secure_params": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJsdGlfYXNzaWdubWVudF9pZCI6ImZhMGE0NjQ0LWViZmUtNGRkMS1iNjhkLTkyYWQ4OTdiYjMwNCIsImx0aV9hc3NpZ25tZW50X2Rlc2NyaXB0aW9uIjoiXHUwMDNjZGl2IHN0eWxlPVwiZm9udC1mYW1pbHk6IHN5c3RlbS11aSwgLWFwcGxlLXN5c3RlbSwgU2Vnb2UgVUksIFJvYm90bywgQXJpYWwsIHNhbnMtc2VyaWY7IGxpbmUtaGVpZ2h0OiAxLjY7IGNvbG9yOiAjMWIxZjIzO1wiXHUwMDNlXG5cdTAwM2NkaXYgc3R5bGU9XCJiYWNrZ3JvdW5kOiBsaW5lYXItZ3JhZGllbnQoMTM1ZGVnLCAjMWEyYTRhIDAlLCAjYjg5MzJhIDEwMCUpOyBwYWRkaW5nOiAxOHB4OyBib3JkZXItcmFkaXVzOiAxMnB4OyBjb2xvcjogI2ZmZjtcIlx1MDAzZVxuXHUwMDNjaDIgc3R5bGU9XCJtYXJnaW46IDAgMCA4cHggMDtcIlx1MDAzZUFkYW1zIHZzLiBKZWZmZXJzb24g4oCUIEV4dHJhIENyZWRpdFx1MDAzYy9oMlx1MDAzZVxuXHUwMDNjZGl2XHUwMDNlRXh0cmEgQ3JlZGl0IEFzc2lnbm1lbnQg4oCiIFRvdGFsIFBvaW50czogXHUwMDNjc3Ryb25nXHUwMDNlMjAwXHUwMDNjL3N0cm9uZ1x1MDAzZVx1MDAzYy9kaXZcdTAwM2Vcblx1MDAzYy9kaXZcdTAwM2Vcblx1MDAzY3BcdTAwM2VcdTAwM2NzdHJvbmdcdTAwM2VBc3NpZ25lZCBSZWFkaW5nOlx1MDAzYy9zdHJvbmdcdTAwM2VcdTAwM2Niclx1MDAzZfCfk5YgSm9obiBGZXJsaW5nLCBcdTAwM2NlbVx1MDAzZUFkYW1zIHZzLiBKZWZmZXJzb246IFRoZSBUdW11bHR1b3VzIEVsZWN0aW9uIG9mIDE4MDBcdTAwM2MvZW1cdTAwM2UgKE94Zm9yZCBVbml2ZXJzaXR5IFByZXNzLCAyMDA0KVx1MDAzYy9wXHUwMDNlXG5cdTAwM2Noclx1MDAzZVxuXHUwMDNjcFx1MDAzZVx1MDAzY2EgY2xhc3M9XCJpbmxpbmVfZGlzYWJsZWRcIiBocmVmPVwiaHR0cHM6Ly9qdXB5dGVyLmhpc3RvcnluZXRtZWRpYS5uZXQvdXNoaXN0b3J5MS8wNE5hdGlvbmFsL2ZlcmxpbmcuaHRtbFwiIHRhcmdldD1cIl9ibGFua1wiXHUwMDNlQWNjZXNzIHRoZSBKdXB5dGVyIEJvb2sgTGVzc29uXHUwMDNjL2FcdTAwM2VcdTAwM2NzdHJvbmdcdTAwM2VcdTAwM2Mvc3Ryb25nXHUwMDNlXHUwMDNjL3BcdTAwM2Vcblx1MDAzY2gzXHUwMDNlXHUwMDNjc3Ryb25nXHUwMDNl8J-TjCBQdXJwb3NlXHUwMDNjL3N0cm9uZ1x1MDAzZVx1MDAzYy9oM1x1MDAzZVxuXHUwMDNjcFx1MDAzZVRoaXMgb3B0aW9uYWwgZXh0cmEgY3JlZGl0IGFzc2lnbm1lbnQgYWxsb3dzIHlvdSB0byByZWNvdmVyIHBvaW50cyBieSBkZW1vbnN0cmF0aW5nIGEgZGVlcCBlbmdhZ2VtZW50IHdpdGggSm9obiBGZXJsaW5nJ3MgYWNjb3VudCBvZiB0aGUgRWxlY3Rpb24gb2YgMTgwMCBhbmQgYnkgY29ubmVjdGluZyBoaXMgYXJndW1lbnQgdG8gYSBjZW50cmFsIHF1ZXN0aW9uLi4uICh0cnVuY2F0ZWQpIn0._S0v1ahZYX_R_NdJiJ--O7AqjhfNjI34JpmBwsZWuyc",
+    "lti_context_id": "fa0a4644-ebfe-4dd1-b68d-92ad897bb304",
+    "course_id": 2496138,
+    "name": "High Value Extra Credit: Adams vs. Jefferson",
+    "submission_types": [
+      "online_url",
+      "media_recording",
+      "online_upload"
+    ],
+    "has_submitted_submissions": true,
+    "due_date_required": false,
+    "max_name_length": 255,
+    "in_closed_grading_period": false,
+    "availability_status": {
+      "status": "closed",
+      "date": null
+    },
+    "graded_submissions_exist": true,
+    "is_quiz_assignment": false,
+    "can_duplicate": true,
+    "original_course_id": null,
+    "original_assignment_id": null,
+    "original_lti_resource_link_id": null,
+    "original_assignment_name": null,
+    "original_quiz_id": null,
+    "workflow_state": "published",
+    "important_dates": false,
+    "muted": true,
+    "html_url": "https://sdccd.instructure.com/courses/2496138/assignments/21983090",
+    "speed_grader_url": "https://sdccd.instructure.com/courses/2496138/gradebook/speed_grader?assignment_id=21983090",
+    "has_overrides": false,
+    "needs_grading_count": 4,
+    "sis_assignment_id": null,
+    "integration_id": null,
+    "integration_data": {},
+    "allowed_extensions": [
+      "docx",
+      "pdf"
+    ],
+    "use_rubric_for_grading": true,
+    "free_form_criterion_comments": false,
+    "rubric": [
+      {
+        "id": "_9299",
+        "points": 70.0,
+        "description": "Analysis & Interpretation",
+        "long_description": "Presents a substantive, textually grounded interpretation of Ferling&#39;s argument about the constitutional failure of 1800 and the role of compromise in resolving it—analyzing the motivations of key actors (Adams, Jefferson, Hamilton, Burr, Pinckney) rather than merely summarizing events.",
+        "criterion_use_range": false,
+        "ratings": [
+          {
+            "id": "_4131",
+            "points": 70.0,
+            "description": "Meets",
+            "long_description": ""
+          },
+          {
+            "id": "_2618",
+            "points": 0.0,
+            "description": "Does Not Meet",
+            "long_description": ""
+          }
+        ]
+      },
+      {
+        "id": "_5913",
+        "points": 70.0,
+        "description": "Engagement with Lesson Evidence",
+        "long_description": "Integrates at least two specific examples or direct quotations from Ferling&#39;s text (e.g., the 36-ballot House vote, Hamilton&#39;s pamphlet, Burr&#39;s silence, Pinckney&#39;s refusal) and explicitly explains how each piece of evidence supports the argument—no floating quotes.",
+        "criterion_use_range": false,
+        "ratings": [
+          {
+            "id": "_8087",
+            "points": 70.0,
+            "description": "Meets",
+            "long_description": ""
+          },
+          {
+            "id": "_3737",
+            "points": 0.0,
+            "description": "Does Not Meet",
+            "long_description": ""
+          }
+        ]
+      },
+      {
+        "id": "_9879",
+        "points": 40.0,
+        "description": "Connection to Course Themes",
+        "long_description": "Identifies a specific modern political example and draws precise structural parallels to 1800—analyzing mechanics such as leverage, thresholds, and concessions—without partisan moralizing. Vague statements (&#39;politics is still toxic&#39;) do not earn credit.",
+        "criterion_use_range": false,
+        "ratings": [
+          {
+            "id": "_8188",
+            "points": 40.0,
+            "description": "Meets",
+            "long_description": ""
+          },
+          {
+            "id": "_2692",
+            "points": 0.0,
+            "description": "Does Not Meet",
+            "long_description": ""
+          }
+        ]
+      },
+      {
+        "id": "_2644",
+        "points": 20.0,
+        "description": "Writing Quality & Mechanics",
+        "long_description": "Meets format requirements (3–4 page essay or 5–7 minute presentation), uses complete sentences and clear organization, and demonstrates coherence and polish appropriate for college-level work.",
+        "criterion_use_range": false,
+        "ratings": [
+          {
+            "id": "_8750",
+            "points": 20.0,
+            "description": "Meets",
+            "long_description": ""
+          },
+          {
+            "id": "_9327",
+            "points": 0.0,
+            "description": "Does Not Meet",
+            "long_description": ""
+          }
+        ]
+      }
+    ],
+    "rubric_settings": {
+      "id": 1636588,
+      "title": "Adams v Jefferson",
+      "points_possible": 200.0,
+      "free_form_criterion_comments": false,
+      "hide_score_total": false,
+      "hide_points": false
+    },
+    "published": true,
+    "unpublishable": false,
+    "only_visible_to_overrides": false,
+    "visible_to_everyone": true,
+    "locked_for_user": false,
+    "submissions_download_url": "https://sdccd.instructure.com/courses/2496138/assignments/21983090/submissions?zip=1",
+    "post_manually": false,
+    "anonymize_students": false,
+    "new_quizzes_anonymous_participants": false,
+    "require_lockdown_browser": false,
+    "restrict_quantitative_data": false
+  },
+  "rubric_criteria": [
+    {
+      "id": "_9299",
+      "description": "Analysis & Interpretation",
+      "long_description": "Presents a substantive, textually grounded interpretation of Ferling&#39;s argument about the constitutional failure of 1800 and the role of compromise in resolving it—analyzing the motivations of key actors (Adams, Jefferson, Hamilton, Burr, Pinckney) rather than merely summarizing events.",
+      "points": 70.0,
+      "ratings": [
+        {
+          "id": "_4131",
+          "description": "Meets",
+          "long_description": "",
+          "points": 70.0
+        },
+        {
+          "id": "_2618",
+          "description": "Does Not Meet",
+          "long_description": "",
+          "points": 0.0
+        }
+      ]
+    },
+    {
+      "id": "_5913",
+      "description": "Engagement with Lesson Evidence",
+      "long_description": "Integrates at least two specific examples or direct quotations from Ferling&#39;s text (e.g., the 36-ballot House vote, Hamilton&#39;s pamphlet, Burr&#39;s silence, Pinckney&#39;s refusal) and explicitly explains how each piece of evidence supports the argument—no floating quotes.",
+      "points": 70.0,
+      "ratings": [
+        {
+          "id": "_8087",
+          "description": "Meets",
+          "long_description": "",
+          "points": 70.0
+        },
+        {
+          "id": "_3737",
+          "description": "Does Not Meet",
+          "long_description": "",
+          "points": 0.0
+        }
+      ]
+    },
+    {
+      "id": "_9879",
+      "description": "Connection to Course Themes",
+      "long_description": "Identifies a specific modern political example and draws precise structural parallels to 1800—analyzing mechanics such as leverage, thresholds, and concessions—without partisan moralizing. Vague statements (&#39;politics is still toxic&#39;) do not earn credit.",
+      "points": 40.0,
+      "ratings": [
+        {
+          "id": "_8188",
+          "description": "Meets",
+          "long_description": "",
+          "points": 40.0
+        },
+        {
+          "id": "_2692",
+          "description": "Does Not Meet",
+          "long_description": "",
+          "points": 0.0
+        }
+      ]
+    },
+    {
+      "id": "_2644",
+      "description": "Writing Quality & Mechanics",
+      "long_description": "Meets format requirements (3–4 page essay or 5–7 minute presentation), uses complete sentences and clear organization, and demonstrates coherence and polish appropriate for college-level work.",
+      "points": 20.0,
+      "ratings": [
+        {
+          "id": "_8750",
+          "description": "Meets",
+          "long_description": "",
+          "points": 20.0
+        },
+        {
+          "id": "_9327",
+          "description": "Does Not Meet",
+          "long_description": "",
+          "points": 0.0
+        }
+      ]
+    }
+  ],
+  "total_points": 200.0,
+  "formatted_rubric": "GRADING RUBRIC:\n\nCRITERION 1: Analysis & Interpretation (70.0 points)\nDetails: Presents a substantive, textually grounded interpretation of Ferling&#39;s argument about the constitutional failure of 1800 and the role of compromise in resolving it—analyzing the motivations of key actors (Adams, Jefferson, Hamilton, Burr, Pinckney) rather than merely summarizing events.\nRating Scale:\n  - Meets (70.0 pts)\n  - Does Not Meet (0.0 pts)\n\nCRITERION 2: Engagement with Lesson Evidence (70.0 points)\nDetails: Integrates at least two specific examples or direct quotations from Ferling&#39;s text (e.g., the 36-ballot House vote, Hamilton&#39;s pamphlet, Burr&#39;s silence, Pinckney&#39;s refusal) and explicitly explains how each piece of evidence supports the argument—no floating quotes.\nRating Scale:\n  - Meets (70.0 pts)\n  - Does Not Meet (0.0 pts)\n\nCRITERION 3: Connection to Course Themes (40.0 points)\nDetails: Identifies a specific modern political example and draws precise structural parallels to 1800—analyzing mechanics such as leverage, thresholds, and concessions—without partisan moralizing. Vague statements (&#39;politics is still toxic&#39;) do not earn credit.\nRating Scale:\n  - Meets (40.0 pts)\n  - Does Not Meet (0.0 pts)\n\nCRITERION 4: Writing Quality & Mechanics (20.0 points)\nDetails: Meets format requirements (3–4 page essay or 5–7 minute presentation), uses complete sentences and clear organization, and demonstrates coherence and polish appropriate for college-level work.\nRating Scale:\n  - Meets (20.0 pts)\n  - Does Not Meet (0.0 pts)\n\n",
+  "_metadata": {
+    "cached_at": "2026-06-03T10:03:11.028137",
+    "cache_key": "38081f7b47a3f8cc4394f8ca8a39db19"
+  }
+}

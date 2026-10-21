@@ -1,6 +1,6 @@
 """
 Configuration loader for grading system
-Loads course configurations from config/courses.json
+Loads course and model configurations from config/config.json
 """
 
 import json
@@ -31,13 +31,13 @@ class ConfigLoader:
         self.load_config()
     
     def load_config(self) -> None:
-        """Load configuration from courses.json"""
-        config_file = self.config_dir / "courses.json"
-        
+        """Load configuration from config.json"""
+        config_file = self.config_dir / "config.json"
+
         if not config_file.exists():
             raise FileNotFoundError(
                 f"Configuration file not found: {config_file}\n"
-                f"Please create config/courses.json with your course configuration."
+                f"Please create config/config.json with your course and model configuration."
             )
         
         try:
@@ -126,6 +126,15 @@ class ConfigLoader:
         kb_config = self.knowledge_bases.get(course_type, {})
         return kb_config.get('embeddings_file', f'embeddings_{course_type}.pkl')
     
+    def get_default_model(self) -> str:
+        """
+        Get the default LLM model string from settings.default_model
+
+        Returns:
+            Model string, e.g. "claude-sonnet-4-6"
+        """
+        return self.settings.get('default_model', 'claude-sonnet-4-6')
+
     def get_setting(self, key: str, default=None):
         """
         Get a setting value
@@ -150,7 +159,7 @@ class ConfigLoader:
         
         # Check courses
         if not self.courses_config:
-            messages.append("ERROR: No courses configured in courses.json")
+            messages.append("ERROR: No courses configured in config.json")
             return messages
         
         for course_name, course_config in self.courses_config.items():

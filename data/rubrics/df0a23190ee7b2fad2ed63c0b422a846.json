@@ -1,0 +1,398 @@
+{
+  "assignment": {
+    "id": 22013691,
+    "position": 2,
+    "description": "<div style=\"font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; line-height: 1.6; color: #1b1f23;\">\n<div style=\"background: linear-gradient(135deg,#8b0000 0%,#ff8c00 25%,#ffd700 50%,#32cd32 75%,#1e90ff 100%); padding: 18px; border-radius: 12px; color: #fff;\">\n<h2 style=\"margin: 0 0 8px 0;\">📖 Assignment: Book Review of <em>1984 – History, Memory, and Control</em></h2>\n<div>Writing Assignment • Length: <strong>3–4 pages, double spaced</strong></div>\n</div>\n<section style=\"margin-top: 16px;\">\n<h3 style=\"margin: 10px 0;\">📖 Lesson Access</h3>\n<p><a class=\"inline_disabled\" href=\"https://jupyter.historynetmedia.net/lectures/book-review/1984.html\" target=\"_blank\"> Open the Jupyter Book lesson</a></p>\n<h3 style=\"margin: 10px 0;\">🎯 Purpose</h3>\n<p>When historians write book reviews, they evaluate works of scholarship and explain their significance to the profession. In this assignment, you will practice those same skills, but with a classic work of political fiction: <em>George Orwell’s 1984</em>. The goal is to consider how Orwell’s story illustrates the dangers of manipulated history and the loss of historical memory.</p>\n<p>As you read, reflect on the guiding question:</p>\n<blockquote style=\"border-left: 4px solid #ffd700; padding-left: 12px; font-style: italic;\">What happens to a society when it no longer has a reliable historical memory?</blockquote>\n</section>\n<section style=\"margin-top: 20px;\">\n<h3 style=\"margin: 10px 0;\">🧩 Format of Your Review</h3>\n<p>Your review should follow a structured format and maintain a clear, scholarly tone. Avoid personal opinion or casual commentary—support your ideas with examples from the novel.</p>\n<ol style=\"padding-left: 20px;\">\n<li><strong>Title</strong><br>Create a short, focused title for your review that highlights both the book and the theme.<br><em>Example:</em> “Who Controls the Past: Historical Memory in Orwell’s 1984.”</li>\n<li><strong>Introduction</strong><br>Begin with the title and author of the novel.<br>Briefly explain why <em>1984</em> matters for students of history and society.<br>State the central question of your review: how Orwell warns about the consequences of erasing or rewriting history.</li>\n<li><strong>Summary of the Novel</strong><br>Provide a concise summary of the main plot points.<br>Highlight key features related to historical memory:\n<ul>\n<li>Winston’s work at the Ministry of Truth</li>\n<li>The slogan “Who controls the past controls the future.”</li>\n<li>The Party’s systematic rewriting of the record</li>\n</ul>\n</li>\n<li><strong>Author’s Thesis and Message</strong><br>Since Orwell is not a historian, identify his message instead of a formal thesis.<br>Explain how the novel shows the relationship between memory, truth, and power.<br>Discuss how the Party’s manipulation of history serves as a tool of control.</li>\n<li><strong>Structure and Organization</strong><br>Comment on the way Orwell builds the narrative (Winston’s perspective, the gradual destruction of resistance).<br>Reflect on how this structure reinforces the theme of memory and forgetting.</li>\n<li><strong>Historical Context and Connections</strong><br>Connect the novel’s themes to real historical examples: propaganda, censorship, erasure of records, or rewriting history.<br>Draw parallels to present-day concerns: misinformation, media manipulation, or the fragility of historical truth in a digital age.<br><strong>Answer:</strong> What lessons can historians and citizens learn from <em>1984</em> about preserving memory?</li>\n<li><strong>Strengths and Weaknesses</strong><br>Identify strengths: Orwell’s prescience, his insight into propaganda and control.<br>Identify weaknesses: the limits of fiction as historical evidence.<br>Reflect on what fiction can accomplish that historical monographs cannot.</li>\n<li><strong>Conclusion</strong><br>Summarize your overall assessment of the novel’s warning.<br>Conclude with your reflection on the guiding question:<br><em>What safeguards does a society need to protect historical memory and prevent the manipulation of truth?</em></li>\n</ol>\n</section>\n<section style=\"margin-top: 24px;\">\n<h3 style=\"margin: 10px 0;\">📝 Reminders</h3>\n<ul>\n<li>Use a clear, academic tone.</li>\n<li>Support your points with examples from the novel.</li>\n<li>Do not substitute internet summaries for your own careful reading.</li>\n<li>Length: 3–4 pages, double spaced.</li>\n</ul>\n</section>\n<div style=\"background: linear-gradient(135deg,#1e3c72 0%,#2a5298 100%); color: #fff; padding: 18px; border-radius: 10px; margin-top: 24px;\">\n<p style=\"margin: 0;\"><strong>Academic Integrity Reminder:</strong> There is <em>no need</em> to use AI tools to complete this assignment. You <em>may</em> use AI to help you format or polish your writing, but your ideas, analysis, and examples must be entirely your own. Submitting AI-generated work as your own is considered academic dishonesty.</p>\n</div>\n</div><script src=\"https://instructure-uploads.s3.amazonaws.com/account_10690000000081284/attachments/140455467/MesaMobile.js\"></script>",
+    "points_possible": 200.0,
+    "grading_type": "points",
+    "created_at": "2026-06-04T20:09:35Z",
+    "updated_at": "2026-08-04T20:26:23Z",
+    "due_at": "2026-08-06T06:59:59Z",
+    "final_grader_id": null,
+    "grader_count": 0,
+    "graders_anonymous_to_graders": false,
+    "grader_comments_visible_to_graders": true,
+    "grader_names_visible_to_final_grader": true,
+    "lock_at": "2026-08-09T06:59:59Z",
+    "unlock_at": null,
+    "assignment_group_id": 4399425,
+    "peer_reviews": false,
+    "anonymous_peer_reviews": false,
+    "automatic_peer_reviews": false,
+    "intra_group_peer_reviews": false,
+    "post_to_sis": false,
+    "grade_group_students_individually": false,
+    "group_category_id": null,
+    "grading_standard_id": null,
+    "moderated_grading": false,
+    "hide_in_gradebook": false,
+    "omit_from_final_grade": false,
+    "suppress_assignment": false,
+    "anonymous_instructor_annotations": false,
+    "anonymous_grading": false,
+    "allowed_attempts": -1,
+    "annotatable_attachment_id": null,
+    "secure_params": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJsdGlfYXNzaWdubWVudF9pZCI6IjJjMTgyZGQ5LWQ5MjUtNDI4NS04OGVjLTExZTUzMmY1MTJhYyIsImx0aV9hc3NpZ25tZW50X2Rlc2NyaXB0aW9uIjoiXHUwMDNjZGl2IHN0eWxlPVwiZm9udC1mYW1pbHk6IHN5c3RlbS11aSwgLWFwcGxlLXN5c3RlbSwgU2Vnb2UgVUksIFJvYm90bywgQXJpYWwsIHNhbnMtc2VyaWY7IGxpbmUtaGVpZ2h0OiAxLjY7IGNvbG9yOiAjMWIxZjIzO1wiXHUwMDNlXG5cdTAwM2NkaXYgc3R5bGU9XCJiYWNrZ3JvdW5kOiBsaW5lYXItZ3JhZGllbnQoMTM1ZGVnLCM4YjAwMDAgMCUsI2ZmOGMwMCAyNSUsI2ZmZDcwMCA1MCUsIzMyY2QzMiA3NSUsIzFlOTBmZiAxMDAlKTsgcGFkZGluZzogMThweDsgYm9yZGVyLXJhZGl1czogMTJweDsgY29sb3I6ICNmZmY7XCJcdTAwM2Vcblx1MDAzY2gyIHN0eWxlPVwibWFyZ2luOiAwIDAgOHB4IDA7XCJcdTAwM2Xwn5OWIEFzc2lnbm1lbnQ6IEJvb2sgUmV2aWV3IG9mIFx1MDAzY2VtXHUwMDNlMTk4NCDigJMgSGlzdG9yeSwgTWVtb3J5LCBhbmQgQ29udHJvbFx1MDAzYy9lbVx1MDAzZVx1MDAzYy9oMlx1MDAzZVxuXHUwMDNjZGl2XHUwMDNlV3JpdGluZyBBc3NpZ25tZW50IOKAoiBMZW5ndGg6IFx1MDAzY3N0cm9uZ1x1MDAzZTPigJM0IHBhZ2VzLCBkb3VibGUgc3BhY2VkXHUwMDNjL3N0cm9uZ1x1MDAzZVx1MDAzYy9kaXZcdTAwM2Vcblx1MDAzYy9kaXZcdTAwM2Vcblx1MDAzY3NlY3Rpb24gc3R5bGU9XCJtYXJnaW4tdG9wOiAxNnB4O1wiXHUwMDNlXG5cdTAwM2NoMyBzdHlsZT1cIm1hcmdpbjogMTBweCAwO1wiXHUwMDNl8J-TliBMZXNzb24gQWNjZXNzXHUwMDNjL2gzXHUwMDNlXG5cdTAwM2NwXHUwMDNlXHUwMDNjYSBjbGFzcz1cImlubGluZV9kaXNhYmxlZFwiIGhyZWY9XCJodHRwczovL2p1cHl0ZXIuaGlzdG9yeW5ldG1lZGlhLm5ldC9sZWN0dXJlcy9ib29rLXJldmlldy8xOTg0Lmh0bWxcIiB0YXJnZXQ9XCJfYmxhbmtcIlx1MDAzZSBPcGVuIHRoZSBKdXB5dGVyIEJvb2sgbGVzc29uXHUwMDNjL2FcdTAwM2VcdTAwM2MvcFx1MDAzZVxuXHUwMDNjaDMgc3R5bGU9XCJtYXJnaW46IDEwcHggMDtcIlx1MDAzZfCfjq8gUHVycG9zZVx1MDAzYy9oM1x1MDAzZVxuXHUwMDNjcFx1MDAzZVdoZW4gaGlzdG9yaWFucyB3cml0ZSBib29rIHJldmlld3MsIHRoZXkgZXZhbHVhdGUgd29ya3Mgb2Ygc2Nob2xhcnNoaXAgYW5kIGV4cGxhaW4gdGhlaXIgc2lnbmlmaWNhbmNlIHRvIHRoZSBwcm9mZXNzaW9uLiBJbiB0aGlzIGFzc2lnbm1lbnQsIHlvdSB3aWxsIHByYWN0aWNlIHRob3NlIHNhbWUgc2tpbGxzLCBidXQgd2l0aCBhIGNsYXNzaWMgd29yayBvZiBwb2xpdGljYS4uLiAodHJ1bmNhdGVkKSJ9.1gB-tc7H8QYVimN31CIqKFlddmrxgIC8RSyRt8OUZ18",
+    "lti_context_id": "2c182dd9-d925-4285-88ec-11e532f512ac",
+    "course_id": 2502477,
+    "name": "Book Review Project",
+    "submission_types": [
+      "online_upload"
+    ],
+    "has_submitted_submissions": true,
+    "due_date_required": false,
+    "max_name_length": 255,
+    "in_closed_grading_period": false,
+    "availability_status": {
+      "status": "closed",
+      "date": null
+    },
+    "graded_submissions_exist": true,
+    "is_quiz_assignment": false,
+    "can_duplicate": true,
+    "original_course_id": null,
+    "original_assignment_id": null,
+    "original_lti_resource_link_id": null,
+    "original_assignment_name": null,
+    "original_quiz_id": null,
+    "workflow_state": "published",
+    "important_dates": false,
+    "muted": true,
+    "html_url": "https://sdccd.instructure.com/courses/2502477/assignments/22013691",
+    "speed_grader_url": "https://sdccd.instructure.com/courses/2502477/gradebook/speed_grader?assignment_id=22013691",
+    "has_overrides": false,
+    "needs_grading_count": 1,
+    "sis_assignment_id": null,
+    "integration_id": null,
+    "integration_data": {},
+    "allowed_extensions": [
+      "pdf",
+      "docx"
+    ],
+    "use_rubric_for_grading": true,
+    "free_form_criterion_comments": false,
+    "rubric": [
+      {
+        "id": "_2138",
+        "points": 50.0,
+        "description": "Argument & Interpretation",
+        "long_description": "Develops a clear, focused analytical argument about how Orwell's novel illuminates the dangers of manipulated history and the loss of collective memory—going beyond plot summary to offer genuine interpretive insight into the relationship between truth, power, and the past.",
+        "ignore_for_scoring": null,
+        "criterion_use_range": false,
+        "ratings": [
+          {
+            "id": "_2479",
+            "points": 50.0,
+            "description": "Meets",
+            "long_description": ""
+          },
+          {
+            "id": "_6729",
+            "points": 0.0,
+            "description": "Does Not Meet",
+            "long_description": ""
+          }
+        ]
+      },
+      {
+        "id": "_1673",
+        "points": 25.0,
+        "description": "Summary & Comprehension",
+        "long_description": "Provides an accurate, concise summary that correctly identifies key plot elements relevant to the assignment's themes: Winston's role at the Ministry of Truth, the Party's systematic rewriting of records, and the slogan 'Who controls the past controls the future.' Demonstrates careful reading of the novel rather than reliance on secondary summaries.",
+        "ignore_for_scoring": null,
+        "criterion_use_range": false,
+        "ratings": [
+          {
+            "id": "_7790",
+            "points": 25.0,
+            "description": "Meets",
+            "long_description": ""
+          },
+          {
+            "id": "_8463",
+            "points": 0.0,
+            "description": "Does Not Meet",
+            "long_description": ""
+          }
+        ]
+      },
+      {
+        "id": "_3627",
+        "points": 40.0,
+        "description": "Author's Message & Thematic Analysis",
+        "long_description": "Identifies Orwell's central message about memory, truth, and power with clarity and nuance. Explains how the Party's manipulation of history functions as a tool of political control, and connects specific scenes or details from the novel to support that analysis.",
+        "ignore_for_scoring": null,
+        "criterion_use_range": false,
+        "ratings": [
+          {
+            "id": "_7426",
+            "points": 40.0,
+            "description": "Meets",
+            "long_description": ""
+          },
+          {
+            "id": "_289",
+            "points": 0.0,
+            "description": "Does Not Meet",
+            "long_description": ""
+          }
+        ]
+      },
+      {
+        "id": "_4664",
+        "points": 40.0,
+        "description": "Historical Context & Real-World Connections",
+        "long_description": "Connects the novel's themes to concrete historical and contemporary examples—such as propaganda, censorship, erasure of records, misinformation, or media manipulation—demonstrating the ability to move between fiction and historical reality. Directly answers what lessons historians and citizens can draw from 1984 about preserving historical memory.",
+        "ignore_for_scoring": null,
+        "criterion_use_range": false,
+        "ratings": [
+          {
+            "id": "_5429",
+            "points": 40.0,
+            "description": "Meets",
+            "long_description": ""
+          },
+          {
+            "id": "_7707",
+            "points": 0.0,
+            "description": "Does Not Meet",
+            "long_description": ""
+          }
+        ]
+      },
+      {
+        "id": "_1350",
+        "points": 25.0,
+        "description": "Critical Evaluation (Strengths & Weaknesses)",
+        "long_description": "Thoughtfully assesses the novel's value as a lens for historical thinking: identifies genuine strengths (Orwell's prescience, insight into propaganda) and acknowledges the limitations of fiction as historical evidence. Reflects meaningfully on what fiction can accomplish that a historical monograph cannot.",
+        "ignore_for_scoring": null,
+        "criterion_use_range": false,
+        "ratings": [
+          {
+            "id": "_6213",
+            "points": 25.0,
+            "description": "Meets",
+            "long_description": ""
+          },
+          {
+            "id": "_8004",
+            "points": 0.0,
+            "description": "Does Not Meet",
+            "long_description": ""
+          }
+        ]
+      },
+      {
+        "id": "_1308",
+        "points": 10.0,
+        "description": "Structure & Organization",
+        "long_description": "Review follows the assigned format with a clear title, identifiable introduction, body sections, and conclusion. Ideas develop logically across the essay; the structure reinforces rather than undermines the central argument.",
+        "ignore_for_scoring": null,
+        "criterion_use_range": false,
+        "ratings": [
+          {
+            "id": "_2363",
+            "points": 10.0,
+            "description": "Meets",
+            "long_description": ""
+          },
+          {
+            "id": "_3956",
+            "points": 0.0,
+            "description": "Does Not Meet",
+            "long_description": ""
+          }
+        ]
+      },
+      {
+        "id": "_2798",
+        "points": 10.0,
+        "description": "Writing Quality & Mechanics",
+        "long_description": "Maintains a scholarly, academic tone appropriate for a college-level history course. Uses complete sentences, correct grammar, and clear reasoning; avoids casual or personal-opinion framing. Paper meets the 3–4 page, double-spaced length requirement.",
+        "ignore_for_scoring": null,
+        "criterion_use_range": false,
+        "ratings": [
+          {
+            "id": "_618",
+            "points": 10.0,
+            "description": "Meets",
+            "long_description": ""
+          },
+          {
+            "id": "_3583",
+            "points": 0.0,
+            "description": "Does Not Meet",
+            "long_description": ""
+          }
+        ]
+      }
+    ],
+    "rubric_settings": {
+      "id": 1640447,
+      "title": "Book Review: 1984 – History, Memory, and Control",
+      "points_possible": 200.0,
+      "free_form_criterion_comments": false,
+      "hide_score_total": false,
+      "hide_points": false
+    },
+    "published": true,
+    "unpublishable": false,
+    "only_visible_to_overrides": false,
+    "visible_to_everyone": true,
+    "locked_for_user": false,
+    "submissions_download_url": "https://sdccd.instructure.com/courses/2502477/assignments/22013691/submissions?zip=1",
+    "post_manually": false,
+    "anonymize_students": false,
+    "new_quizzes_anonymous_participants": false,
+    "require_lockdown_browser": false,
+    "restrict_quantitative_data": false
+  },
+  "rubric_criteria": [
+    {
+      "id": "_2138",
+      "description": "Argument & Interpretation",
+      "long_description": "Develops a clear, focused analytical argument about how Orwell's novel illuminates the dangers of manipulated history and the loss of collective memory—going beyond plot summary to offer genuine interpretive insight into the relationship between truth, power, and the past.",
+      "points": 50.0,
+      "ratings": [
+        {
+          "id": "_2479",
+          "description": "Meets",
+          "long_description": "",
+          "points": 50.0
+        },
+        {
+          "id": "_6729",
+          "description": "Does Not Meet",
+          "long_description": "",
+          "points": 0.0
+        }
+      ]
+    },
+    {
+      "id": "_1673",
+      "description": "Summary & Comprehension",
+      "long_description": "Provides an accurate, concise summary that correctly identifies key plot elements relevant to the assignment's themes: Winston's role at the Ministry of Truth, the Party's systematic rewriting of records, and the slogan 'Who controls the past controls the future.' Demonstrates careful reading of the novel rather than reliance on secondary summaries.",
+      "points": 25.0,
+      "ratings": [
+        {
+          "id": "_7790",
+          "description": "Meets",
+          "long_description": "",
+          "points": 25.0
+        },
+        {
+          "id": "_8463",
+          "description": "Does Not Meet",
+          "long_description": "",
+          "points": 0.0
+        }
+      ]
+    },
+    {
+      "id": "_3627",
+      "description": "Author's Message & Thematic Analysis",
+      "long_description": "Identifies Orwell's central message about memory, truth, and power with clarity and nuance. Explains how the Party's manipulation of history functions as a tool of political control, and connects specific scenes or details from the novel to support that analysis.",
+      "points": 40.0,
+      "ratings": [
+        {
+          "id": "_7426",
+          "description": "Meets",
+          "long_description": "",
+          "points": 40.0
+        },
+        {
+          "id": "_289",
+          "description": "Does Not Meet",
+          "long_description": "",
+          "points": 0.0
+        }
+      ]
+    },
+    {
+      "id": "_4664",
+      "description": "Historical Context & Real-World Connections",
+      "long_description": "Connects the novel's themes to concrete historical and contemporary examples—such as propaganda, censorship, erasure of records, misinformation, or media manipulation—demonstrating the ability to move between fiction and historical reality. Directly answers what lessons historians and citizens can draw from 1984 about preserving historical memory.",
+      "points": 40.0,
+      "ratings": [
+        {
+          "id": "_5429",
+          "description": "Meets",
+          "long_description": "",
+          "points": 40.0
+        },
+        {
+          "id": "_7707",
+          "description": "Does Not Meet",
+          "long_description": "",
+          "points": 0.0
+        }
+      ]
+    },
+    {
+      "id": "_1350",
+      "description": "Critical Evaluation (Strengths & Weaknesses)",
+      "long_description": "Thoughtfully assesses the novel's value as a lens for historical thinking: identifies genuine strengths (Orwell's prescience, insight into propaganda) and acknowledges the limitations of fiction as historical evidence. Reflects meaningfully on what fiction can accomplish that a historical monograph cannot.",
+      "points": 25.0,
+      "ratings": [
+        {
+          "id": "_6213",
+          "description": "Meets",
+          "long_description": "",
+          "points": 25.0
+        },
+        {
+          "id": "_8004",
+          "description": "Does Not Meet",
+          "long_description": "",
+          "points": 0.0
+        }
+      ]
+    },
+    {
+      "id": "_1308",
+      "description": "Structure & Organization",
+      "long_description": "Review follows the assigned format with a clear title, identifiable introduction, body sections, and conclusion. Ideas develop logically across the essay; the structure reinforces rather than undermines the central argument.",
+      "points": 10.0,
+      "ratings": [
+        {
+          "id": "_2363",
+          "description": "Meets",
+          "long_description": "",
+          "points": 10.0
+        },
+        {
+          "id": "_3956",
+          "description": "Does Not Meet",
+          "long_description": "",
+          "points": 0.0
+        }
+      ]
+    },
+    {
+      "id": "_2798",
+      "description": "Writing Quality & Mechanics",
+      "long_description": "Maintains a scholarly, academic tone appropriate for a college-level history course. Uses complete sentences, correct grammar, and clear reasoning; avoids casual or personal-opinion framing. Paper meets the 3–4 page, double-spaced length requirement.",
+      "points": 10.0,
+      "ratings": [
+        {
+          "id": "_618",
+          "description": "Meets",
+          "long_description": "",
+          "points": 10.0
+        },
+        {
+          "id": "_3583",
+          "description": "Does Not Meet",
+          "long_description": "",
+          "points": 0.0
+        }
+      ]
+    }
+  ],
+  "total_points": 200.0,
+  "formatted_rubric": "GRADING RUBRIC:\n\nCRITERION 1: Argument & Interpretation (50.0 points)\nDetails: Develops a clear, focused analytical argument about how Orwell's novel illuminates the dangers of manipulated history and the loss of collective memory—going beyond plot summary to offer genuine interpretive insight into the relationship between truth, power, and the past.\nRating Scale:\n  - Meets (50.0 pts)\n  - Does Not Meet (0.0 pts)\n\nCRITERION 2: Summary & Comprehension (25.0 points)\nDetails: Provides an accurate, concise summary that correctly identifies key plot elements relevant to the assignment's themes: Winston's role at the Ministry of Truth, the Party's systematic rewriting of records, and the slogan 'Who controls the past controls the future.' Demonstrates careful reading of the novel rather than reliance on secondary summaries.\nRating Scale:\n  - Meets (25.0 pts)\n  - Does Not Meet (0.0 pts)\n\nCRITERION 3: Author's Message & Thematic Analysis (40.0 points)\nDetails: Identifies Orwell's central message about memory, truth, and power with clarity and nuance. Explains how the Party's manipulation of history functions as a tool of political control, and connects specific scenes or details from the novel to support that analysis.\nRating Scale:\n  - Meets (40.0 pts)\n  - Does Not Meet (0.0 pts)\n\nCRITERION 4: Historical Context & Real-World Connections (40.0 points)\nDetails: Connects the novel's themes to concrete historical and contemporary examples—such as propaganda, censorship, erasure of records, misinformation, or media manipulation—demonstrating the ability to move between fiction and historical reality. Directly answers what lessons historians and citizens can draw from 1984 about preserving historical memory.\nRating Scale:\n  - Meets (40.0 pts)\n  - Does Not Meet (0.0 pts)\n\nCRITERION 5: Critical Evaluation (Strengths & Weaknesses) (25.0 points)\nDetails: Thoughtfully assesses the novel's value as a lens for historical thinking: identifies genuine strengths (Orwell's prescience, insight into propaganda) and acknowledges the limitations of fiction as historical evidence. Reflects meaningfully on what fiction can accomplish that a historical monograph cannot.\nRating Scale:\n  - Meets (25.0 pts)\n  - Does Not Meet (0.0 pts)\n\nCRITERION 6: Structure & Organization (10.0 points)\nDetails: Review follows the assigned format with a clear title, identifiable introduction, body sections, and conclusion. Ideas develop logically across the essay; the structure reinforces rather than undermines the central argument.\nRating Scale:\n  - Meets (10.0 pts)\n  - Does Not Meet (0.0 pts)\n\nCRITERION 7: Writing Quality & Mechanics (10.0 points)\nDetails: Maintains a scholarly, academic tone appropriate for a college-level history course. Uses complete sentences, correct grammar, and clear reasoning; avoids casual or personal-opinion framing. Paper meets the 3–4 page, double-spaced length requirement.\nRating Scale:\n  - Meets (10.0 pts)\n  - Does Not Meet (0.0 pts)\n\n",
+  "_metadata": {
+    "cached_at": "2026-08-10T08:34:02.179915",
+    "cache_key": "df0a23190ee7b2fad2ed63c0b422a846"
+  }
+}

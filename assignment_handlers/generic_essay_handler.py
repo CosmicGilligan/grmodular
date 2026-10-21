@@ -14,21 +14,29 @@ class GenericEssayHandler:
     Can handle any essay assignment by loading rubrics from Canvas or using custom rubrics
     """
     
-    def __init__(self, llm_client: LLMBase = None, rubric_manager: RubricManager = None):
+    def __init__(self, llm_client: LLMBase = None, rubric_manager: RubricManager = None,
+                 model: str = None):
         """
         Initialize the handler with an LLM client and rubric manager
-        
+
         Args:
             llm_client: LLM client for grading (from make_llm())
             rubric_manager: Rubric manager for loading rubrics
+            model: Model string to use for grading. Defaults to the value in
+                config/config.json (settings.default_model) if not provided.
         """
         if llm_client is None:
             raise ValueError("LLM client is required for grading")
-            
+
         self.llm = llm_client
         self.rubric_manager = rubric_manager or RubricManager()
         self.current_rubric = None
         self.system_prompt_template = self._get_base_system_prompt()
+
+        if model is None:
+            from shared.config_loader import get_config
+            model = get_config().get_default_model()
+        self.model = model
     
     def load_rubric(self, rubric_data: Dict) -> bool:
         """
@@ -139,7 +147,7 @@ Remember to return ONLY valid JSON with no markdown formatting."""
             logger.info(f"Grading {student_name}...")
             
             response = self.llm.generate(
-                model="claude-sonnet-4-20250514",
+                model=self.model,
                 messages=messages,
                 temperature=0.2,
                 max_tokens=2000

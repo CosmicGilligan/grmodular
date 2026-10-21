@@ -30,9 +30,9 @@ st.set_page_config(page_title="Book Review Grader", page_icon="📚", layout="wi
 
 st.title("📚 Book Review Grading: 1984")
 
-# Initialize Session State
+# ── Session State Init ────────────────────────────────────────────────────────
 if "review_grades" not in st.session_state:
-    st.session_state.review_grades = {}  # Changed to dict with user_id as key
+    st.session_state.review_grades = {}
 
 if "loaded_reviews" not in st.session_state:
     st.session_state.loaded_reviews = []
@@ -43,66 +43,59 @@ if "download_metadata" not in st.session_state:
 if "export_path" not in st.session_state:
     st.session_state.export_path = None
 
+# FIX: selected_students stored as a set for stable checkbox state
 if "selected_students" not in st.session_state:
-    st.session_state.selected_students = []
+    st.session_state.selected_students = set()
 
 if "config" not in st.session_state:
     try:
         st.session_state.config = get_config()
     except Exception as e:
         st.error(f"Error loading configuration: {e}")
-        st.info("Please check config/courses.json")
+        st.info("Please check config/config.json")
         st.stop()
 
-# --- SIDEBAR CONFIG ---
+# ── Sidebar ───────────────────────────────────────────────────────────────────
 with st.sidebar:
     st.header("Configuration")
-    
-    # Load courses
+
     try:
         config = st.session_state.config
         COURSES = config.get_courses_dict()
-        
+
         course_name = st.selectbox(
             "Select course",
             options=list(COURSES.keys()),
             key="book_review_course_selector"
         )
-        
+
         if course_name:
             selected_course_id, course_type = COURSES[course_name]
             st.session_state.selected_course_id = selected_course_id
             st.session_state.selected_course_name = course_name
             st.session_state.selected_course_type = course_type
-            
             st.info(f"Course ID: {selected_course_id}")
         else:
             st.warning("Please select a course")
             st.stop()
-            
+
     except Exception as e:
         st.error(f"Error loading courses: {e}")
         st.stop()
-    
-    # Assignment ID
+
     assignment_id = st.text_input("Canvas Assignment ID")
-    
-    # Rubric Selection
+
     st.subheader("📋 Rubric Selection")
-    
-    # Initialize rubric manager
+
     if "rubric_manager" not in st.session_state:
         st.session_state.rubric_manager = RubricManager()
-    
     if "current_rubric" not in st.session_state:
         st.session_state.current_rubric = None
-    
     if "rubric_loaded" not in st.session_state:
         st.session_state.rubric_loaded = False
-    
-    # Rubric loading options
+
     rubric_tab1, rubric_tab2, rubric_tab3 = st.tabs(["🔄 Load from Canvas", "💾 Load Cached", "📝 Custom Rubric"])
-    
+
     with rubric_tab1:
         if st.button("📥 Load Rubric from Canvas", key="load_rubric_button"):
             if not assignment_id:
@@ -114,34 +107,25 @@ with st.sidebar:
                         rubric_data = st.session_state.rubric_manager.get_rubric_from_canvas(
                             course_id, assignment_id, is_discussion=False, force_refresh=True
                         )
-                        
                         if rubric_data:
                             st.session_state.current_rubric = rubric_data
                             st.session_state.rubric_loaded = True
                             st.success(f"✓ Loaded rubric: {st.session_state.rubric_manager.get_rubric_summary(rubric_data)}")
                         else:
                             st.error("Could not retrieve rubric from Canvas")
-                            
                     except Exception as e:
                         st.error(f"Error loading rubric: {e}")
                         import traceback
                         st.error(traceback.format_exc())
-    
+
     with rubric_tab2:
-        # List cached rubrics
         cached_rubrics = st.session_state.rubric_manager.list_cached_rubrics()
-        
         if cached_rubrics:
-            rubric_options = {}
-            for rubric in cached_rubrics:
-                rubric_options[rubric['summary']] = rubric['cache_key']
-            
+            rubric_options = {r['summary']: r['cache_key'] for r in cached_rubrics}
             selected_cache_key = st.selectbox("Select cached rubric:", list(rubric_options.keys()))
-            
             if st.button("📥 Load Selected Rubric"):
                 cache_key = rubric_options[selected_cache_key]
                 rubric_data = st.session_state.rubric_manager.load_rubric_from_cache(cache_key)
-                
                 if rubric_data:
                     st.session_state.current_rubric = rubric_data
                     st.session_state.rubric_loaded = True
@@ -150,29 +134,28 @@ with st.sidebar:
                     st.error("Could not load selected rubric")
         else:
             st.info("No cached rubrics found")
-    
+
     with rubric_tab3:
         st.info("Custom rubric creation coming soon...")
-    
-    # Show current rubric status
+
     if st.session_state.rubric_loaded and st.session_state.current_rubric:
         rubric_summary = st.session_state.rubric_manager.get_rubric_summary(st.session_state.current_rubric)
         st.success(f"📋 Current Rubric: {rubric_summary}")
     else:
         st.warning("⚠️ No rubric loaded. Please load a rubric before grading.")
-    
+
     st.divider()
-    model_choice = st.selectbox("LLM Model", ["claude-sonnet-4-20250514", "gpt-4o"])
-    
-    # Score multiplier
+    _model_options = ["claude-sonnet-4-6", "gpt-4o"]
+    _default_model = config.get_default_model()
+    _default_index = _model_options.index(_default_model) if _default_model in _model_options else 0
+    model_choice = st.selectbox("LLM Model", _model_options, index=_default_index)
+
     score_multiplier = st.slider("Score Multiplier (Leniency)", 1.0, 1.3, 1.05, 0.05)
     st.caption(f"Scores will be boosted by {(score_multiplier - 1.0) * 100:.0f}%")
 
-# --- STEP 1: DOWNLOAD SUBMISSIONS ---
-
+# ── Step 1: Download ──────────────────────────────────────────────────────────
 st.header("Step 1: Download Submissions from Canvas")
 
-# Get credentials
 try:
     canvas_url, canvas_token = load_canvas_credentials()
 except Exception as e:
@@ -190,6 +173,8 @@ with col1:
             with st.spinner("Downloading from Canvas..."):
                 try:
                     course_id = st.session_state.selected_course_id
+                    st.session_state.review_grades = {}
+                    st.session_state.export_path = None
                     num_students, num_files, metadata = download_submissions_flat(
                         canvas_url,
                         canvas_token,
@@ -200,13 +185,13 @@ with col1:
                     )
                     st.session_state.download_metadata = metadata
                     st.success(f"✓ Downloaded {num_students} submissions ({num_files} files)")
-                    
-                    # AUTO-LOAD submissions after download
+
+                    st.session_state.review_grades = {}
+                    st.session_state.export_path = None
                     with st.spinner("Loading submissions..."):
                         submissions = load_submissions_from_folder("./submissions")
-                        
+
                         if submissions:
-                            # Match with Canvas metadata to get proper names
                             matched = 0
                             for sub in submissions:
                                 user_id = sub['user_id']
@@ -214,33 +199,55 @@ with col1:
                                 if meta_entry and 'name' in meta_entry:
                                     sub['name'] = meta_entry['name']
                                     matched += 1
-                            
+
+                            # Deduplicate by user_id, keeping the most recently modified file
+                            import re
+                            seen = {}
+                            seen_mtime = {}
+                            for sub in submissions:
+                                uid = sub['user_id']
+                                # Find the file this submission came from
+                                matching = list(Path("./submissions").glob(f"*{uid}*"))
+                                mtime = max((f.stat().st_mtime for f in matching), default=0)
+                                if uid not in seen or mtime > seen_mtime[uid]:
+                                    seen[uid] = sub
+                                    seen_mtime[uid] = mtime
+                            submissions = list(seen.values())        
+
                             st.session_state.loaded_reviews = submissions
-                            # Select all by default
-                            st.session_state.selected_students = [sub['user_id'] for sub in submissions]
+
+                            # FIX: auto-select only students without an existing Canvas grade
+                            st.session_state.selected_students = {
+                                sub['user_id'] for sub in submissions
+                                if not (
+                                    metadata.get(str(sub['user_id'])) or
+                                    metadata.get(sub['user_id']) or {}
+                                ).get('current_score')
+                            }
+                            already_graded = len(submissions) - len(st.session_state.selected_students)
                             st.success(f"✓ Auto-loaded {len(submissions)} submissions (matched {matched} names)")
+                            if already_graded:
+                                st.info(f"ℹ️ {already_graded} student(s) already have Canvas grades and were deselected automatically")
                         else:
                             st.warning("Downloaded but could not load submissions")
-                    
+
                 except Exception as e:
                     st.error(f"Error downloading: {e}")
                     import traceback
                     st.error(traceback.format_exc())
 
 with col2:
-    # Optional manual load
     if st.button("📂 Load from Folder (Optional)", key="load_button"):
         try:
             with st.spinner("Loading submissions from ./submissions..."):
                 submissions = load_submissions_from_folder("./submissions")
-                
+
                 if not submissions:
                     st.warning("⚠️ No submissions found in ./submissions directory")
                     st.info("Please download submissions first")
                 else:
-                    # Match with Canvas metadata if available
-                    if st.session_state.download_metadata:
-                        metadata = st.session_state.download_metadata
+                    metadata = st.session_state.download_metadata
+                    if metadata:
                         matched = 0
                         for sub in submissions:
                             user_id = sub['user_id']
@@ -249,99 +256,125 @@ with col2:
                                 sub['name'] = meta_entry['name']
                                 matched += 1
                         st.success(f"✓ Matched {matched}/{len(submissions)} names with Canvas metadata")
-                    
+
+                    # Deduplicate by user_id, keeping the most recently modified file
+                    import re
+                    seen = {}
+                    seen_mtime = {}
+                    for sub in submissions:
+                        uid = sub['user_id']
+                        # Find the file this submission came from
+                        matching = list(Path("./submissions").glob(f"*{uid}*"))
+                        mtime = max((f.stat().st_mtime for f in matching), default=0)
+                        if uid not in seen or mtime > seen_mtime[uid]:
+                            seen[uid] = sub
+                            seen_mtime[uid] = mtime
+                    submissions = list(seen.values())
                     st.session_state.loaded_reviews = submissions
-                    # Select all by default
-                    st.session_state.selected_students = [sub['user_id'] for sub in submissions]
+                    st.session_state.selected_students = {
+                        sub['user_id'] for sub in submissions
+                        if not (
+                            metadata.get(str(sub['user_id'])) or
+                            metadata.get(sub['user_id']) or {}
+                        ).get('current_score')
+                    }
                     st.success(f"✓ Loaded {len(submissions)} submissions")
-                            
+
         except Exception as e:
             st.error(f"Error loading: {e}")
             import traceback
             st.error(traceback.format_exc())
 
-# Status and Student Selection
+# ── Student Selection Table ───────────────────────────────────────────────────
 st.divider()
 if st.session_state.loaded_reviews:
     st.success(f"✅ {len(st.session_state.loaded_reviews)} submissions loaded")
-    
-    # Student Selection
     st.subheader("Select Students to Grade")
-    
+
     col1, col2, col3 = st.columns([1, 1, 2])
-    
     with col1:
         if st.button("✓ Select All"):
-            st.session_state.selected_students = [sub['user_id'] for sub in st.session_state.loaded_reviews]
+            st.session_state.selected_students = {
+                sub['user_id'] for sub in st.session_state.loaded_reviews
+            }
             st.rerun()
-    
     with col2:
         if st.button("✗ Deselect All"):
-            st.session_state.selected_students = []
+            st.session_state.selected_students = set()
             st.rerun()
-    
-    # Show students with checkboxes
+
     st.write("**Students:**")
-    
-    # Create a dataframe for display
-    student_data = []
+
+    metadata = st.session_state.download_metadata
+
+    # FIX: render individual checkboxes with stable keys instead of data_editor
+    # data_editor rebuilds on every interaction and resets the scroll position
+    header_cols = st.columns([1, 4, 2, 2, 2])
+    header_cols[0].markdown("**Select**")
+    header_cols[1].markdown("**Student**")
+    header_cols[2].markdown("**Canvas Grade**")
+    header_cols[3].markdown("**Status**")
+    header_cols[4].markdown("**Text Length**")
+
     for sub in st.session_state.loaded_reviews:
         user_id = sub['user_id']
-        graded = user_id in st.session_state.review_grades
-        status = "✅ Graded" if graded else "⏳ Not graded"
-        student_data.append({
-            'Select': user_id in st.session_state.selected_students,
-            'Student': sub['name'],
-            'ID': user_id,
-            'Status': status,
-            'Text Length': f"{len(sub['text'])} chars"
-        })
-    
-    df_students = pd.DataFrame(student_data)
-    
-    # Use data editor for selection
-    edited_df = st.data_editor(
-        df_students,
-        column_config={
-            "Select": st.column_config.CheckboxColumn(
-                "Select",
-                help="Select students to grade",
-                default=False,
+        meta = metadata.get(str(user_id)) or metadata.get(user_id) or {}
+        existing_score = meta.get('current_score')
+
+        if user_id in st.session_state.review_grades:
+            status = "✅ Graded this session"
+        elif existing_score is not None:
+            status = "✅ Already graded"
+        else:
+            status = "⏳ Not graded"
+
+        canvas_grade = f"{existing_score}" if existing_score is not None else "—"
+        text_len = f"{len(sub['text'])} chars"
+
+        row_cols = st.columns([1, 4, 2, 2, 2])
+        with row_cols[0]:
+            # FIX: key is stable per student; checking session_state directly avoids
+            # the re-render loop that was resetting checkboxes
+            checked = st.checkbox(
+                label="",
+                value=(user_id in st.session_state.selected_students),
+                key=f"chk_{user_id}",
+                label_visibility="collapsed"
             )
-        },
-        disabled=["Student", "ID", "Status", "Text Length"],
-        hide_index=True,
-        use_container_width=True
-    )
-    
-    # Update selected students from edited dataframe
-    st.session_state.selected_students = [
-        row['ID'] for _, row in edited_df.iterrows() if row['Select']
-    ]
-    
+            if checked:
+                st.session_state.selected_students.add(user_id)
+            else:
+                st.session_state.selected_students.discard(user_id)
+
+        row_cols[1].write(sub['name'])
+        row_cols[2].write(canvas_grade)
+        row_cols[3].write(status)
+        row_cols[4].write(text_len)
+
     selected_count = len(st.session_state.selected_students)
     st.info(f"📌 Selected {selected_count}/{len(st.session_state.loaded_reviews)} students for grading")
-    
+
 else:
     st.info("⬆️ Download submissions to begin")
 
-# --- STEP 2: AI GRADING ---
-
+# ── Step 2: Grade ─────────────────────────────────────────────────────────────
 if st.session_state.loaded_reviews and st.session_state.selected_students:
     st.header("Step 2: Grade with AI")
-    
+
     selected_count = len(st.session_state.selected_students)
     st.info(f"📚 Ready to grade {selected_count} selected students")
-    
-    # Show grading button
-    button_label = f"🤖 Grade Selected Students ({selected_count})" if selected_count < len(st.session_state.loaded_reviews) else "🤖 Grade All Students"
-    
+
+    button_label = (
+        f"🤖 Grade Selected Students ({selected_count})"
+        if selected_count < len(st.session_state.loaded_reviews)
+        else "🤖 Grade All Students"
+    )
+
     if st.button(button_label, key="start_grading_button", type="primary"):
         # Create LLM client
         try:
             llm_keys = load_llm_keys()
-            
-            # Determine provider from model choice
+
             if "claude" in model_choice:
                 provider = "anthropic"
                 from anthropic import Anthropic
@@ -358,79 +391,73 @@ if st.session_state.loaded_reviews and st.session_state.selected_students:
                     st.error("OpenAI API key not found")
                     st.stop()
                 raw_client = OpenAI(api_key=api_key)
-            
+
             llm_client = make_llm(provider, raw_client)
-            
-            # Check if rubric is loaded
+
             if not st.session_state.rubric_loaded or not st.session_state.current_rubric:
                 st.error("❌ No rubric loaded. Please load a rubric before grading.")
                 st.stop()
-            
-            handler = GenericEssayHandler(llm_client, st.session_state.rubric_manager)
-            
-            # Load the rubric into the handler
+
+            handler = GenericEssayHandler(llm_client, st.session_state.rubric_manager, model=model_choice)
+
             if not handler.load_rubric(st.session_state.current_rubric):
                 st.error("❌ Failed to load rubric into grading handler")
                 st.stop()
-                
+
             st.success(f"✓ LLM client initialized ({provider})")
             st.success(f"✓ Using rubric: {handler.get_current_rubric_summary()}")
-            
+
         except Exception as e:
             st.error(f"Error creating LLM client: {e}")
             import traceback
             st.error(traceback.format_exc())
             st.stop()
-        
-        # Filter submissions to only selected students
+
         selected_submissions = [
-            sub for sub in st.session_state.loaded_reviews 
+            sub for sub in st.session_state.loaded_reviews
             if sub['user_id'] in st.session_state.selected_students
         ]
-        
-        # Grade submissions
+
+        # Track only what's graded in THIS button press
+        newly_graded_ids = set()
+
         progress_bar = st.progress(0)
         status_text = st.empty()
-        
         errors = []
         total = len(selected_submissions)
-        
+
+        # FIX: try/except is INSIDE the for loop so every student gets graded
         for i, sub in enumerate(selected_submissions):
             status_text.text(f"Grading {i+1}/{total}: {sub['name']}...")
-            
+
             try:
-                # Call grading handler
                 result = handler.grade_essay(
                     student_name=sub['name'],
                     submission_text=sub['text'],
                     user_id=sub['user_id']
                 )
-                
-                # Check for errors
+
                 if 'error' in result:
                     errors.append(f"{sub['name']}: {result.get('error', 'Unknown error')}")
                     logger.error(f"Grading error for {sub['name']}: {result.get('error')}")
-                
-                # Apply multiplier & cap at 100
+
                 raw_score = result['score']
-                final_score = min(100.0, raw_score * score_multiplier)
-                
-                # Store in dict by user_id - use raw score for final recording
+
                 st.session_state.review_grades[sub['user_id']] = {
                     "ID": sub['user_id'],
                     "Student": sub['name'],
                     "Raw Score": raw_score,
-                    "Final Score": raw_score,  # Use raw score instead of capped score
+                    "Final Score": raw_score,
                     "Feedback": result['feedback'],
                     "Breakdown": str(result.get('sections', {}))
                 }
-                
+                newly_graded_ids.add(sub['user_id'])
+
             except Exception as e:
                 error_msg = f"{sub['name']}: {str(e)}"
                 errors.append(error_msg)
                 logger.exception(f"Exception grading {sub['name']}")
-                
-                # Add failed grade
+
                 st.session_state.review_grades[sub['user_id']] = {
                     "ID": sub['user_id'],
                     "Student": sub['name'],
@@ -439,47 +466,46 @@ if st.session_state.loaded_reviews and st.session_state.selected_students:
                     "Feedback": f"Error during grading: {str(e)}",
                     "Breakdown": "{}"
                 }
-            
+                # Don't add to newly_graded_ids on error — don't upload failed grades
+
             progress_bar.progress((i + 1) / total)
-        
-        # Show results
-        success_count = len([g for g in st.session_state.review_grades.values() if g['Final Score'] > 0])
+
+        status_text.text("Grading complete!")
+
+        success_count = len(newly_graded_ids)
         st.success(f"🎉 Grading Complete! {success_count}/{total} successfully graded")
-        
+
         if errors:
             with st.expander(f"⚠️ {len(errors)} Errors Occurred"):
                 for error in errors:
                     st.error(error)
-        
-        # Summary stats
+
         if success_count > 0:
-            successful_grades = [g['Final Score'] for g in st.session_state.review_grades.values() if g['Final Score'] > 0]
+            successful_grades = [
+                st.session_state.review_grades[uid]['Final Score']
+                for uid in newly_graded_ids
+            ]
             avg_score = sum(successful_grades) / len(successful_grades)
-            
-            # Get total points from rubric for display
+
             display_total = 100
             if st.session_state.rubric_loaded and st.session_state.current_rubric:
                 display_total = st.session_state.current_rubric.get('total_points', 100)
-            
-            st.info(f"📊 Grading Summary:")
+
+            st.info("📊 Grading Summary:")
             st.write(f"- Successfully graded: {success_count}/{total}")
             st.write(f"- Average score: {avg_score:.1f}/{display_total}")
             st.write(f"- Score multiplier: {score_multiplier}x ({(score_multiplier-1)*100:.0f}% boost)")
-        
-        # AUTO-EXPORT to Excel
+
+        # AUTO-EXPORT — only newly graded students get Upload?: yes
         with st.spinner("Saving to Excel..."):
             try:
-                # Prepare export list - includes graded + original submissions
                 export_grades = []
-                
+
                 for sub in st.session_state.loaded_reviews:
                     user_id = sub['user_id']
-                    
-                    if user_id in st.session_state.review_grades:
-                        # Use newly graded data
+                    if user_id in newly_graded_ids:
                         export_grades.append(st.session_state.review_grades[user_id])
                     else:
-                        # Use placeholder for non-graded students
                         export_grades.append({
                             "ID": user_id,
                             "Student": sub['name'],
@@ -488,18 +514,18 @@ if st.session_state.loaded_reviews and st.session_state.selected_students:
                             "Feedback": "[Not graded in this session]",
                             "Breakdown": "{}"
                         })
-                
+
                 output_path = Path("./submissions") / "book_reviews_graded.xlsx"
-                
-                # Get total points from rubric (default to 100 if not available)
+
                 total_points = 100.0
                 if st.session_state.rubric_loaded and st.session_state.current_rubric:
                     total_points = st.session_state.current_rubric.get('total_points', 100.0)
-                
+
                 export_book_reviews_to_excel(export_grades, output_path, total_points)
                 st.session_state.export_path = output_path
                 st.success(f"✓ Auto-saved to {output_path}")
-                st.info(f"📝 Excel includes all {len(export_grades)} students ({len(st.session_state.review_grades)} newly graded)")
+                st.info(f"📝 {len(newly_graded_ids)} newly graded students marked for upload")
+
             except Exception as e:
                 st.error(f"Error auto-saving Excel: {e}")
 
@@ -508,20 +534,17 @@ elif st.session_state.loaded_reviews and not st.session_state.selected_students:
 else:
     st.info("⚠️ No submissions loaded - Please download submissions first")
 
-# --- STEP 3: REVIEW RESULTS ---
-
+# ── Step 3: Review Results ────────────────────────────────────────────────────
 if st.session_state.review_grades:
     st.header("Step 3: Review Graded Results")
-    
+
     graded_count = len(st.session_state.review_grades)
     success_count = len([g for g in st.session_state.review_grades.values() if g['Final Score'] > 0])
     st.success(f"✅ {success_count}/{graded_count} reviews graded successfully")
-    
-    # Show only graded students
+
     df = pd.DataFrame(list(st.session_state.review_grades.values()))
     st.dataframe(df[['Student', 'Raw Score', 'Final Score', 'Feedback']], use_container_width=True)
-    
-    # Download button
+
     if st.session_state.export_path and Path(st.session_state.export_path).exists():
         total_in_file = len(st.session_state.loaded_reviews)
         with open(st.session_state.export_path, "rb") as f:
@@ -532,46 +555,46 @@ if st.session_state.review_grades:
                 mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
             )
 
-# --- STEP 4: UPLOAD TO CANVAS ---
-
+# ── Step 4: Upload to Canvas ──────────────────────────────────────────────────
 if st.session_state.export_path and Path(st.session_state.export_path).exists():
     st.header("Step 4: Upload to Canvas")
-    
+
     graded_count = len(st.session_state.review_grades)
     total_count = len(st.session_state.loaded_reviews)
-    
-    st.info(f"📤 Ready to upload to Canvas")
+
+    st.info("📤 Ready to upload to Canvas")
     st.write(f"- **{graded_count}** students with new grades")
     st.write(f"- **{total_count - graded_count}** students unchanged")
     st.write(f"- **{total_count}** total students in file")
-    
+
     if st.button("🚀 Upload to Canvas", key="upload_button", type="primary"):
         try:
             from shared.grade_uploader import upload_all_from_xlsx
-            
+
             with st.spinner("Uploading to Canvas..."):
                 course_id = st.session_state.selected_course_id
-                
+
                 successes, failures, failure_details = upload_all_from_xlsx(
                     canvas_url,
                     canvas_token,
                     course_id,
                     int(assignment_id),
-                    str(st.session_state.export_path)
+                    str(st.session_state.export_path),
+                    respect_upload_flag=True
                 )
-                
+
                 st.success(f"✓ Successfully uploaded {successes} grades!")
-                
+
                 if failures > 0:
                     st.warning(f"⚠️ {failures} uploads failed:")
                     for student, error in failure_details:
                         st.error(f"- {student}: {error}")
-                
+
         except Exception as e:
             st.error(f"Upload error: {e}")
             import traceback
             st.error(traceback.format_exc())
 
-# Help
+# ── Help ──────────────────────────────────────────────────────────────────────
 st.divider()
 st.info("💡 **Workflow:** Download → Select Students → Grade → Upload | Only selected students get new grades")

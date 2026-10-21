@@ -2,15 +2,22 @@ import pandas as pd
 from pathlib import Path
 from typing import List, Dict, Any
 
-def export_exam_to_excel(entry_list: List[List], metadata: dict, output_path: Path, total_points: float = 50.0) -> None:
+def export_exam_to_excel(entry_list: List[List], metadata: dict, output_path: Path,
+                          total_points: float = 50.0, graded_ids: Any = None) -> None:
     """
     Export exam results to Excel format matching Canvas structure.
     
     Args:
-        entry_list: List of [student_name, submission_text, feedback]
+        entry_list: List of [student_name, submission_text, feedback, ...] (extra
+            trailing elements, e.g. a user_id, are ignored)
         metadata: Dict mapping user_id to student info
         output_path: Path to save Excel file
         total_points: Total possible points
+        graded_ids: Optional set of user_ids that were (re)graded in THIS session.
+            When provided, only those rows get 'Upload?': 'yes' — every other row
+            (unchanged from a prior session/Canvas) gets 'Upload?': 'no' so a later
+            upload pass won't resend feedback that never actually changed.
+            When omitted (None), all rows are marked 'yes' (legacy behavior).
     """
     
     # Build reverse lookup: name -> user_id
@@ -20,7 +27,8 @@ def export_exam_to_excel(entry_list: List[List], metadata: dict, output_path: Pa
         name_to_id[name] = user_id
     
     rows = []
-    for student_name, submission_text, feedback in entry_list:
+    for entry in entry_list:
+        student_name, submission_text, feedback = entry[0], entry[1], entry[2]
         # Get user ID
         user_id = name_to_id.get(student_name, '')
         
@@ -45,13 +53,19 @@ def export_exam_to_excel(entry_list: List[List], metadata: dict, output_path: Pa
         else:
             grade_str = feedback if feedback else f"0.00/{total_points:.2f}"
         
+        if graded_ids is None:
+            upload_flag = 'yes'
+        else:
+            # Compare loosely (str/int) since user_ids come from different sources
+            upload_flag = 'yes' if (user_id in graded_ids or str(user_id) in {str(g) for g in graded_ids}) else 'no'
+
         rows.append({
             'Canvas User ID': user_id,
             'Student Last Name': last_name,
             'Student First Name': first_name,
             'Student Submission Text': submission_text[:500] + '...' if len(submission_text) > 500 else submission_text,
             'Grade': grade_str,
-            'Upload?': 'yes'
+            'Upload?': upload_flag
         })
     
     # Create DataFrame and save

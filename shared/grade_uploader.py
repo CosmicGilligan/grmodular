@@ -98,6 +98,11 @@ def upload_grade_and_comment(
         data["submission[posted_grade]"] = str(score)
     if comment:
         data["comment[text_comment]"] = comment[:10000]  # safety limit
+
+    # ADD THIS
+    import logging
+    logging.getLogger(__name__).info(f"PUT {url} | data keys={list(data.keys())} | score={score}")
+
     r = requests.put(url, headers=headers, data=data)
     r.raise_for_status()
     return r.json()
@@ -140,7 +145,8 @@ def upload_all_from_entrylist(
             if user_id is None:
                 failures.append((label, "No Canvas user_id found in label"))
                 continue
-            score, _, comment = parse_score_and_comment(feedback)
+            score, _, _ = parse_score_and_comment(feedback)  # only use score
+            comment = feedback                                 # use full feedback as comment
             upload_grade_and_comment(api_base, token, int(course_id), int(assignment_id), user_id, score, comment)
             successes += 1
         except Exception as e:

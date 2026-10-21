@@ -1,29 +1,29 @@
 {
   "courses": {
-    "HIST 101-1": {
-      "canvas_id": 2490206,
+    "HIST 101": {
+      "canvas_id": 2506048,
       "base_course_number": 101,
       "course_type": "WorldHistory",
       "embeddings_path": "~/dev/kb/text/WorldHistory",
-      "description": "World History Section 1",
+      "description": "World History",
       "enabled": true
     },
-    "HIST 101-2": {
-      "canvas_id": 2492649,
-      "base_course_number": 101,
-      "course_type": "WorldHistory",
-      "embeddings_path": "~/dev/kb/text/WorldHistory",
-      "description": "World History Section 2",
-      "enabled": true
-    },
-    "HIST 110": {
-      "canvas_id": 2489265,
-      "base_course_number": 110,
+    "HIST C1001": {
+      "canvas_id": 2508414,
+      "base_course_number": 1001,
       "course_type": "USHistory",
       "embeddings_path": "~/dev/kb/text/USHistory",
-      "description": "US History II",
+      "description": "US History 1",
       "enabled": true
-    }
+    },
+    "HIST 101-30203": {
+      "canvas_id": 2508438,
+      "base_course_number": 1002,
+      "course_type": "USHistory",
+      "embeddings_path": "~/dev/kb/text/USHistory",
+      "description": "US History 2",
+      "enabled": true
+    }  
   },
   "knowledge_bases": {
     "WorldHistory": {
@@ -39,7 +39,7 @@
   },
   "settings": {
     "default_provider": "anthropic",
-    "default_model": "claude-sonnet-4-20250514",
+    "default_model": "claude-sonnet-5-5",
     "batch_size": 10,
     "max_retries": 3,
     "embeddings_cache_dir": "data/embeddings",

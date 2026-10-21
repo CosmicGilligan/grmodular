@@ -80,10 +80,17 @@ def load_submissions_from_folder(folder_path: str) -> List[Dict[str, Any]]:
                         content = f"[DOCX file: {filename}]"
                 elif file_ext == '.pdf':
                     try:
-                        import PyPDF2
-                        with open(file_path, 'rb') as f:
-                            reader = PyPDF2.PdfReader(f)
-                            content = "\n".join([page.extract_text() for page in reader.pages])
+                        import pdfplumber
+                        with pdfplumber.open(file_path) as pdf:
+                            content = "\n".join(page.extract_text() or "" for page in pdf.pages).strip()
+                        
+                        if len(content) < 100:
+                            logger.info(f"pdfplumber got short content ({len(content)} chars), trying OCR...")
+                            from pdf2image import convert_from_path
+                            import pytesseract
+                            images = convert_from_path(file_path)
+                            content = "\n".join(pytesseract.image_to_string(img) for img in images).strip()
+                            logger.info(f"OCR extracted {len(content)} chars")
                     except Exception as pdf_e:
                         logger.warning(f"Could not read PDF {file_path}: {pdf_e}")
                         content = f"[PDF file: {filename}]"
@@ -329,8 +336,10 @@ def download_submissions_flat(
             for att in sub.get("attachments") or []:
                 att_url = att.get("url") or ""
                 att_name = att.get("filename") or att.get("display_name") or f"file_{att.get('id','unknown')}"
-                safe_name = _slug(att_name)
-                out_path = dest / f"{stem}_{safe_name}"
+                att_path = Path(att_name)
+                safe_name = _slug(att_path.stem)
+                ext = att_path.suffix.lower()  # preserves the dot, e.g. ".docx"
+                out_path = dest / f"{stem}_{safe_name}{ext}"
                 if att_url:
                     with session.get(att_url, stream=True) as r:
                         r.raise_for_status()

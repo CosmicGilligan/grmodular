@@ -132,7 +132,7 @@ try:
                     st.warning(msg)
 except Exception as e:
     st.error(f"Error loading configuration: {e}")
-    st.info("Please check config/courses.json")
+    st.info("Please check config/config.json")
     st.stop()
 
 # Course selector
@@ -223,6 +223,10 @@ if st.session_state.selected_course:
                     is_quiz=is_quiz
                 )
                 st.session_state.exam_handler = handler
+
+                # Temporary debug
+                st.write(f"Handler created with canvas_assignment_id: {handler.canvas_assignment_id}")
+                st.write(f"upload_id passed in: {upload_id}")
                 
                 st.success(f"✓ Loaded exam: {assignment_data.get('name', 'Unknown')}")
                 
@@ -357,7 +361,6 @@ if st.session_state.selected_course and st.session_state.exam_handler:
                             st.text(f"• {msg}")
                         if len(missing_metadata) > 10:
                             st.text(f"... and {len(missing_metadata) - 10} more")
-                
                 # Show sample labels
                 with st.expander("📋 Sample Student Labels"):
                     st.write("First 5 labels that will be used:")
@@ -390,7 +393,7 @@ with col1:
 with col2:
     if provider == "anthropic":
         models = [
-            "claude-sonnet-4-20250514",
+            "claude-sonnet-4-6",
             "claude-3-5-haiku-20241022",
             "claude-3-opus-20240229"
         ]
@@ -400,10 +403,14 @@ with col2:
             "gpt-4o-mini",
             "gpt-4-turbo"
         ]
-    
+
+    _default_model = config.get_default_model()
+    _default_index = models.index(_default_model) if _default_model in models else 0
+
     selected_model = st.selectbox(
         "Model",
         options=models,
+        index=_default_index,
         help="Select the specific model to use"
     )
 
@@ -669,60 +676,40 @@ if st.session_state.entryList and st.session_state.exam_handler:
         
         # Show sample of what will be uploaded
         with st.expander("👀 Preview Upload Data (First 3 Students)"):
+            from shared.grade_uploader import parse_score_and_comment, extract_user_id_from_label
             for i, entry in enumerate(entryList[:3]):
-                if entry[2]:  # If graded
+                if entry[2]:
                     st.text(f"\n{i+1}. Label: {entry[0]}")
-                    # Extract user ID from label
-                    import re
-                    uid_match = re.search(r'(\d{4,})', entry[0])
-                    if uid_match:
-                        st.text(f"   User ID: {uid_match.group(1)} ✓")
-                    else:
-                        st.text(f"   User ID: NOT FOUND ❌")
-                    
-                    # Show first line of feedback
-                    first_line = entry[2].split('\n')[0]
-                    st.text(f"   Score: {first_line}")
+                    uid = extract_user_id_from_label(entry[0])
+                    st.text(f"   User ID: {uid}")
+                    score, max_pts, comment = parse_score_and_comment(entry[2])
+                    st.text(f"   Score parsed: {score}")
+                    st.text(f"   Max pts parsed: {max_pts}")
+                    st.text(f"   Comment preview: {comment[:100]}")
+                    st.text(f"   Raw feedback start: {repr(entry[2][:80])}")
         
         # Upload options
+
         col1, col2 = st.columns(2)
+        
         with col1:
-            upload_from = st.radio(
+            st.session_state.upload_from = st.radio(
                 "Upload from:",
                 options=["Current Session (Memory)", "Excel File"],
+                index=0,
                 help="Choose whether to upload from the current grading session or from a saved Excel file"
             )
-        
+
         with col2:
-            if upload_from == "Excel File":
+            if st.session_state.get("upload_from") == "Excel File":
                 st.info("If uploading from Excel, ensure the 'Upload?' column is set to 'yes' for rows you want to upload")
-        
+
         if st.button("🚀 Upload Grades to Canvas", type="primary"):
             try:
                 from shared.grade_uploader import upload_all_from_entrylist, upload_all_from_xlsx
-                
                 course_name, course_id, course_type = st.session_state.selected_course
-                
-                if upload_from == "Current Session (Memory)":
-                    with st.spinner("Uploading grades to Canvas..."):
-                        successes, failures_count, failures = upload_all_from_entrylist(
-                            canvas_url,
-                            canvas_token,
-                            course_id,
-                            handler.canvas_assignment_id,
-                            entryList
-                        )
-                        
-                        if successes > 0:
-                            st.success(f"✓ Successfully uploaded {successes} grades to Canvas!")
-                        
-                        if failures_count > 0:
-                            st.error(f"❌ Failed to upload {failures_count} grades")
-                            with st.expander("View Failures"):
-                                for label, reason in failures:
-                                    st.text(f"• {label}: {reason}")
-                
-                else:  # Upload from Excel
+
+                if st.session_state.upload_from == "Excel File":
                     export_path = st.session_state.get('export_path')
                     if not export_path or not Path(export_path).exists():
                         st.error("Excel file not found. Please export to Excel first (Step 6).")
@@ -736,25 +723,92 @@ if st.session_state.entryList and st.session_state.exam_handler:
                                 str(export_path),
                                 respect_upload_flag=True
                             )
-                            
                             if successes > 0:
                                 st.success(f"✓ Successfully uploaded {successes} grades to Canvas!")
-                            
                             if failures_count > 0:
                                 st.error(f"❌ Failed to upload {failures_count} grades")
                                 with st.expander("View Failures"):
                                     for label, reason in failures:
                                         st.text(f"• {label}: {reason}")
-                
+                else:
+                    with st.spinner("Uploading grades to Canvas..."):
+                        successes, failures_count, failures = upload_all_from_entrylist(
+                            canvas_url,
+                            canvas_token,
+                            course_id,
+                            handler.canvas_assignment_id,
+                            entryList
+                        )
+                        if successes > 0:
+                            st.success(f"✓ Successfully uploaded {successes} grades to Canvas!")
+                        if failures_count > 0:
+                            st.error(f"❌ Failed to upload {failures_count} grades")
+                            with st.expander("View Failures"):
+                                for label, reason in failures:
+                                    st.text(f"• {label}: {reason}")
+
             except Exception as e:
                 st.error(f"Error uploading to Canvas: {e}")
                 import traceback
                 st.error(traceback.format_exc())
+                
     else:
         st.warning("No graded submissions to upload")
 
 else:
     st.info("⬆️ Please complete previous steps first")
+
+# ═══════════════════════════════════════════════════════════════════
+# Step 8: Upload from Saved Excel (always available)
+# ═══════════════════════════════════════════════════════════════════
+
+st.header("Step 8: Upload Grades from Saved Excel")
+st.info("Use this to upload a previously exported Excel file without re-grading. Enter the assignment ID (not the quiz ID).")
+
+uploaded_xlsx = st.file_uploader("Upload Excel file", type=["xlsx"], key="standalone_xlsx")
+
+col1, col2 = st.columns(2)
+with col1:
+    standalone_course_id = st.text_input("Course ID", key="standalone_course_id")
+with col2:
+    standalone_assignment_id = st.text_input("Assignment ID (not quiz ID)", key="standalone_assignment_id")
+
+if st.button("📤 Upload from Excel", key="standalone_upload_button", type="primary"):
+    if not uploaded_xlsx:
+        st.error("Please upload an Excel file")
+    elif not standalone_course_id:
+        st.error("Please enter a Course ID")
+    elif not standalone_assignment_id:
+        st.error("Please enter an Assignment ID")
+    else:
+        import tempfile, os
+        with tempfile.NamedTemporaryFile(delete=False, suffix=".xlsx") as tmp:
+            tmp.write(uploaded_xlsx.read())
+            tmp_path = tmp.name
+        try:
+            from shared.grade_uploader import upload_all_from_xlsx
+            with st.spinner("Uploading..."):
+                successes, failures_count, failures = upload_all_from_xlsx(
+                    canvas_url,
+                    canvas_token,
+                    int(standalone_course_id),
+                    int(standalone_assignment_id),
+                    tmp_path,
+                    respect_upload_flag=True
+                )
+            if successes > 0:
+                st.success(f"✓ Uploaded {successes} grades to Canvas!")
+            if failures_count > 0:
+                st.error(f"❌ {failures_count} failed")
+                with st.expander("Failures"):
+                    for label, reason in failures:
+                        st.text(f"• {label}: {reason}")
+        except Exception as e:
+            st.error(f"Upload error: {e}")
+            import traceback
+            st.error(traceback.format_exc())
+        finally:
+            os.unlink(tmp_path)
 
 # ═══════════════════════════════════════════════════════════════════
 # Sidebar
