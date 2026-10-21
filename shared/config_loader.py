@@ -131,9 +131,9 @@ class ConfigLoader:
         Get the default LLM model string from settings.default_model
 
         Returns:
-            Model string, e.g. "claude-sonnet-4-6"
+            Model string, e.g. "claude-sonnet-5-5"
         """
-        return self.settings.get('default_model', 'claude-sonnet-4-6')
+        return self.settings.get('default_model', 'claude-sonnet-5-5')
 
     def get_setting(self, key: str, default=None):
         """

@@ -322,7 +322,7 @@ FEEDBACK: [Your feedback here]"""
                 model,
                 [{"role": "user", "content": grading_prompt}],
                 temperature=0.3,
-                max_tokens=500
+                max_tokens=2000  # thinking tokens (Sonnet 5.x) count against this
             )
             
             raw_score, feedback = self._parse_grading_response(response, question_num)
@@ -333,8 +333,11 @@ FEEDBACK: [Your feedback here]"""
             return adjusted_score, feedback
             
         except Exception as e:
+            # Do NOT convert failures into a 0.0 score: a zero is treated as
+            # "no substantive answer" by grade_exam_submission and would be
+            # exported/uploaded as a real grade. Let the caller surface it.
             logger.error(f"Error grading question {question_num}: {e}")
-            return 0.0, f"Error grading this question: {str(e)}"
+            raise RuntimeError(f"Error grading question {question_num}: {e}") from e
     
     def _parse_grading_response(self, response: str, question_num: int) -> Tuple[float, str]:
         """Parse LLM response to extract score and feedback."""
@@ -346,7 +349,12 @@ FEEDBACK: [Your feedback here]"""
             score = max(0.0, min(float(self.points_per_question), score))
         else:
             num_match = re.search(r'^([0-9]+(?:\.[0-9]+)?)', response.strip())
-            score = float(num_match.group(1)) if num_match else 5.0
+            if not num_match:
+                raise ValueError(
+                    f"Could not parse a score for question {question_num} "
+                    f"from model response: {response[:200]!r}"
+                )
+            score = float(num_match.group(1))
             score = max(0.0, min(float(self.points_per_question), score))
         
         feedback_match = re.search(r'FEEDBACK:\s*(.+)', response, re.IGNORECASE | re.DOTALL)

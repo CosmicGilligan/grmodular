@@ -145,8 +145,9 @@ with st.sidebar:
         st.warning("⚠️ No rubric loaded. Please load a rubric before grading.")
 
     st.divider()
-    _model_options = ["claude-sonnet-4-6", "gpt-4o"]
+    from shared.model_catalog import list_anthropic_models
     _default_model = config.get_default_model()
+    _model_options = list_anthropic_models(load_llm_keys().get("anthropic"), _default_model) + ["gpt-4o"]
     _default_index = _model_options.index(_default_model) if _default_model in _model_options else 0
     model_choice = st.selectbox("LLM Model", _model_options, index=_default_index)
 

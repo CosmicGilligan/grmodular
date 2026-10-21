@@ -17,6 +17,12 @@ class LLMBase:
 
 # ── Anthropic wrapper ─────────────────────────────────────────────────────────
 class AnthropicLLM(LLMBase):
+    # Models that answered a request with HTTP 400 because of `temperature`
+    # (e.g. Claude Sonnet 5.5 rejects non-default sampling parameters).
+    # Learned at runtime and shared across instances so older models keep
+    # their temperature setting and newer ones are only probed once.
+    _no_sampling_models: set = set()
+
     def __init__(self, client):
         self.client = client  # anthropic.Anthropic
 
@@ -33,18 +39,37 @@ class AnthropicLLM(LLMBase):
         kwargs = {
             "model": model,
             "max_tokens": max_tokens,
-            "temperature": temperature,
             "messages": converted
         }
+        if model not in self._no_sampling_models:
+            kwargs["temperature"] = temperature
         if system:
             kwargs["system"] = [{"type": "text", "text": system}]
-        
-        resp = self.client.messages.create(**kwargs)
-        # Anthropic returns a list of content blocks; take the first text block
+
+        try:
+            resp = self.client.messages.create(**kwargs)
+        except Exception as e:
+            if (
+                "temperature" in kwargs
+                and getattr(e, "status_code", None) == 400
+                and "temperature" in str(e).lower()
+            ):
+                self._no_sampling_models.add(model)
+                kwargs.pop("temperature")
+                resp = self.client.messages.create(**kwargs)
+            else:
+                raise
+
+        # Anthropic returns a list of content blocks (thinking blocks may come
+        # first on newer models); take the first text block.
         for block in getattr(resp, "content", []) or []:
             if getattr(block, "type", None) == "text":
                 return block.text
-        return ""
+        raise RuntimeError(
+            f"No text block in response from {model} "
+            f"(stop_reason={getattr(resp, 'stop_reason', None)!r}). "
+            f"If this is max_tokens, raise it: thinking tokens count against it."
+        )
 
 # ── OpenAI wrapper ────────────────────────────────────────────────────────────
 class OpenAILLM(LLMBase):

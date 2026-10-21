@@ -391,12 +391,13 @@ with col1:
     )
 
 with col2:
+    _default_model = config.get_default_model()
+
     if provider == "anthropic":
-        models = [
-            "claude-sonnet-4-6",
-            "claude-3-5-haiku-20241022",
-            "claude-3-opus-20240229"
-        ]
+        from shared.model_catalog import list_anthropic_models
+        # Queried live from the Anthropic API (cached 1h); config default is kept
+        # selectable even if the API doesn't list it.
+        models = list_anthropic_models(llm_keys.get("anthropic"), _default_model)
     else:  # openai
         models = [
             "gpt-4o",
@@ -404,7 +405,6 @@ with col2:
             "gpt-4-turbo"
         ]
 
-    _default_model = config.get_default_model()
     _default_index = models.index(_default_model) if _default_model in models else 0
 
     selected_model = st.selectbox(
